@@ -1,0 +1,644 @@
+\section{Измеримые множества}
+
+Далее мы через $\ol\R_+:=\R_+\sqcup\{\infty\}$ будем обозначать множество неотрицательных чисел и добавленный символ бесконечности, при этом будут выполнены следующие аксиомы:
+$\forall\ a\in\R_+\pau a+\infty =\infty$, $a\cdot\infty=\infty$ $(a\ne 0)$, $0\cdot\infty = 0$ и $a<\infty$, $\infty\le \infty$.
+
+Какая-то из этих аксиом понадобится, только когда будем рассматривать интеграл Лебега.
+
+\begin{Def}
+  $\mu\colon 2^X\to\ol \R_+$ называется внешней мерой, если
+\begin{roItems}
+ \item Мера пустого множества равна нулю $\mu(\q)=0$,
+ \item $\mu A\le \mu B$,  если $A\subset B$,
+ \item $\mu A\le \RY n1\infty\mu(A_n)$, если $A\subset \bigcup\limits_{n=1}^\infty$.
+\end{roItems}
+\end{Def}
+
+\begin{Def}
+  Множество $E\subset X$ называется измеримым (относительно внешней меры $\mu$), если 
+\[\mu A = \mu (A\cap E) + \mu(A\dd E)\pau\forall\ A\subset X.\]
+\end{Def}
+
+В силу свойства 3 полуаддитивности внешней меры, достаточно доказывать только неравенство 
+\[\mu A\ge \mu(A\cap E)+\mu(A\dd E)\pau \forall\ A\subset X,\]
+ чтобы показать измеримость множества.
+
+Давайте введём ещё одно обозначение $AB:=A\cap B$, $A':=X\dd A$, $\mu_A(B):=\mu(AB)$.
+
+Тогда легко понять, что $E$ измеримо, если и только если $\forall\ A\subset X\pau \mu_A(X)=\mu_A(E)+\mu_A(E')$.
+
+Давайте ещё через $\Sigma$ будем обозначать совокупность всех измеримых множеств относительно внешней меры $\mu$.
+
+\subsection{Некоторые свойства измеримых множеств}
+\begin{Ut}
+  Если $\mu E=0$, то $E\in\Sigma$.
+\end{Ut}
+\begin{Proof}
+ Это вытекает из того, что $\mu_A(E)=0$ из монотонности меры $\forall\ A$, и тоже в силу монотонности $\mu_A(X)\ge\mu_A(E)+\mu_A(E')$. А мы уже знаем, что этого неравенства достаточно.
+\end{Proof}
+\begin{Ut}
+  Если $E_1,E_2\in\Sigma$, то $E=E_1E_2\in\Sigma$.
+\end{Ut}
+\begin{Proof}
+ Для доказательства запишем следующие равенства:
+\[\mu_A(X) = \mu_A(E_1)+\mu_A(E'_1)\]
+в силу измеримости $E_1$. А в силу измеримости $E_2$ можем записать такое неравенство
+\[\mu_A(X) = \mu_A(E_1)+\mu_A(E'_1)=\mu_{AE_1}(E_2)+\mu_{AE_2}(E_2')+\mu_A(E'_1) 
+ = \mu_A(E) + \underbrace{\mu_A(E_1E')}_{E'_2\subset E'}+\underbrace{\mu_A(E'_1E')}_{E'_1\subset E'}=\mu_A(E)+\mu_A(E').\]
+\end{Proof}
+\begin{Ut}
+  Если $E\in\Sigma$, то $E'\in\Sigma$.
+\end{Ut}
+\begin{Proof}
+  Это вытекает из того, что второе дополнение $E''=E$ есть само множество. И отсюда $\mu_A(X)=\mu_A(E')+\mu_A(E'')$.
+\end{Proof}
+\begin{Ut}
+  Если $E_1,E_2\in\Sigma$, то и разность $E_1\dd E_2$, $E_1\cup E_2\in \Sigma$.
+\end{Ut}
+\begin{Proof}
+  Это вытекает из таких простых равенств: $E_1\dd E_2 = E_1E'_2$, $E_1\cup E_2 = (E'_1E'_2)'$.
+\end{Proof}
+
+Таким образом система измеримых множест является алгеброй. Очевидно же из определения вытекает, что $\q,X\in\Sigma$.
+\begin{Ut}
+  Функция $\mu_A\colon\Sigma\to\ol\R_+$ является конечно аддитивной мерой на алгебре\footnote{Потом мы докажем и $\sigma$-аддитивность.}
+\end{Ut}
+
+\begin{Proof}
+  Пусть $E=E_1\sqcup E_2,E_1,E_2\in\Sigma$. Тогда в силу измеримости
+\[
+  \mu_A(E)=\mu_{AE}(E_1)+\mu_{AE}(E'_1)=
+  \mu_{A}(\underbrace{EE_1}_{E_1})+\mu_A(\underbrace{EE'_1}_{E_2})=\mu_A(E)+\mu_A(E_2)
+\]
+\end{Proof}
+
+Ну и основная теорема.
+\begin{The}[Каратеодори]
+  Пусть $\mu\colon 2^X\to\ol R_+$ внешняя мера. Тогда
+\begin{roItems}
+  \item $\Sigma$ "--- $\sigma$-алгебра;
+  \item $\mu\colon \Sigma\to\ol\R_+$ "--- $\sigma$-аддитивная мера.
+\end{roItems}
+\end{The}
+
+\begin{Proof}
+  Пусть $E=\bigsqcup\limits_{n=1}^\infty E_n$, $E_n\in\Sigma$. Обозначим $F_n=\bigsqcup\limits_{k=1}^nE_k$, $F_n\in\Sigma$.
+
+Для любого $A\subset X$
+\[\mu_A(X)=\mu_A(F_n)+\mu_A(F'_n)\ge \RY k1N \mu_A(E_k)+\mu_A(E').\]
+Устремляем $n \to \infty$.
+\[\RY k1\infty \mu_A(E_k)+\mu_A(E')\ge \mu_A(E)+\mu_A(E').\]
+Получаем $\mu(E)=\RY k1\infty\mu(E_k)$, $E\in\Sigma$, $\mu_A(X)=\RY k1\infty\mu_A(E_k)+\mu_A(E')$.
+\end{Proof}
+
+%%%%%%%%%%%%%%%%%%%%%
+Пусть $m\colon S\to\R_+$, $S\subset 2^X$ "--- полукольцо, и мера $m$ $\sigma$-аддитивна. Будем также полагать, что она $\sigma$-конечна, то есть $X$ представимо в виде
+\[X=\bigsqcup\limits_{n=1}^\infty A_n,\pau A_n\in S.\]
+У нас мера конечно, поэтому этого будет достаточно.
+
+\begin{Def}
+  Мера заданная на совокупности всех подмножеств $m^*\colon 2^X\to\ol\R_+$ называется внешней мерой Лебега, если 
+\[m^*(A)=\inf\limits_{A\subset \bigcup\limits_{n=1}^\infty A_n}\RY n1\infty m(A_n).\]
+Инфинум по всем счётным покрытиям.
+\end{Def}
+
+Сейчас мы докажем, что внешняя мера Лебега является внешней мерой.
+
+\begin{Proof}
+Обозначение $(X,\Sigma,\nu)$ "--- измеримое пространство где $\Sigma$ "--- $\sigma$-алгебра измеримых множеств $\mu=m^*$, $\nu:= \mu\big|_\Sigma$.
+\begin{roItems}
+  \item $m^*(\q)=0$ очевидно;
+  \item $m^*(A)\le m^*(B)$, если $A\subset B$ тоже;
+  \item $M^*(A)\le\RY n1\infty m^*(A_n)$, если $A\subset \bigcup\limits_{k=1}^\infty A_n$.
+\end{roItems}
+
+Докажем третье: если $\exists\ n\colon m^*(A_n)=\infty$, то утверждение верно.
+
+Пусть $\forall\ n\in\N\pau m^*(A_n)<\infty$. 
+\[\forall\ \e>0\pau\exists\ B_{nk}\in S\colon A_n\subset \bigcup\limits_{k=1}^\infty B_{nk}\text{ и }\RY k1\infty(B_{nk})<m^*(A_n)+\frac\e{2^n}.\]
+Отсюда вытекает, что $A$ содержится в двойном объединении
+\[A\subset \bigcup\limits_{n=1}^\infty\bigcup\limits_{k=1}^\infty B_{nk},\pau m^*(A)\le \RY n1\infty \RY k1\infty m(B_{nk})\le\RY n1\infty m^*(A_n)+\e.\]
+\end{Proof}
+
+Ещё одно свойство запишем и сделаем перерыв.
+\begin{Ut}
+  Если $A\in S$, то $m^*(A)=m(A)$
+\end{Ut}
+
+\begin{Proof}
+  Это вытекает из такого неравенства:
+\[m^*(A)\le m(A)\le \RY n1\infty m(A_n),\]
+если $A\subset \UN n1\infty A_n$, $A_n\in S$.
+\end{Proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% после перерыва
+\begin{The}[о продолжении меры]
+  Пусть $m\colon S\to\R_+$ "--- $\sigma$-аддитивная мера. Тогда 
+\begin{roItems}
+ \item Внешняя мера $\mu:=m^*\colon \Sigma\to\ol\R_+$ $\sigma$-аддитивная;
+ \item $\Sigma$ является $\sigma$-алгеброй;
+ \item $S\subset\Sigma$;
+ \item $\mu\big|_S = m$.
+\end{roItems}
+\end{The}
+
+\begin{Proof}
+ Всё, кроме свойства три, доказано в теореме Коритоадори. Докажем 3. Пусть у нас $E\in S$, $A\subset X$ "--- произвольно множество, $\e>0$. Тогда 
+\[\exists\ B_n\in S\colon A\subset \uN n1\text{ и }\RY n1\infty m(B_n)<\mu^*(A)+\e.\]
+Ну теперь применим свойство полуаддитивности и запишем следующее равенство (воспользуемся полуаддитивностью внешней меры)
+\[m^*(A)\le m^*(A\cap E)+m^*(A\dd E)\le\RY n1\infty \big(\underbrace{m(B_n\cap E)+m(B_n\dd E)}_{m(B_n)}\big)=\RY n1\infty\le m^*(A)+\e.\]
+Так как $\e$ произвольно, тут везде знаки равенства и $E\in \Sigma$.
+\end{Proof}
+
+\begin{Sl}
+ Полукольцо содержится в наименьшем кольце, которое содержится в наименьшем $\sigma$-кольце, которое содержится в наименьшей $\sigma$-алгебре, содержащейся в $\Sigma$, то есть
+\[ S\subset \Rim(S)\subset \Rim_\sigma(S)\subset \mathcal A_\sigma(S)\subset \Sigma.\]
+\end{Sl}
+
+\begin{The}[о единственности продолжения меры]
+ Пусть $m\colon S\to \R_+$ $\sigma$-аддитивная и $\sigma$-конечная мера. Тогда $\exists!\ \sigma$-аддитивная мера, которая продолжает меру $m$ на $\sigma$-алгебру.
+\end{The}
+
+\begin{Proof}
+  Докажем для случая $\mu(X)<\infty$ (иначе разобьём множество на измеримые). Пусть имеются два продолжения $\mu\colon \Sigma\to\ol\R_+$ и $\mu\colon \Sigma\ol\R_+$, где $\mu=m^*$. Тогда $\forall\ E\in\Sigma\pau \nu E\le \mu (E)$, ведь на $S$ $\mu\big|_S=\nu\big|_S=m$. Осталось заметить, что в силу аддитивности этмх мер
+\[\nu(E)+\nu(E')=m(X)=\mu(E)+\mu(E').\]
+Отсюда видим, что $\nu(E)=\mu(E)$.
+\end{Proof}
+
+\begin{Lem}[об измеримой оболочке]
+  Пусть $\mu=m^*$ "--- внешняя мера Лебега. Тогда $\forall\ A\subset X\pau \exists\ B\in\Sigma\colon A\subset B$ и $\mu(A)=\mu(B)$.
+\end{Lem}
+\begin{Proof}
+  $\forall\ n\in\N\pau\exists\ B_{nk}\in S\colon A\subset B_n = \uN k1 B_{nk}$ и 
+$  \mu(B_n)\le \rY k1\mu(B_{nk})< \mu(A) + \frac1n$ по определению нижней грани, которая присутствует в определении внешней меры Лебега.
+
+ Обозначим $B:=\bigcap\limits_{n=1}^\infty B_n\in\Sigma$, $A\subset B$. Имеем
+ \[\mu(B)\le \mu(B_n)\le \mu(A)+\frac 1n.\]
+ Ну и поскольку $n$ произвольно, то получается равенство.
+\end{Proof}
+
+\begin{Def}
+  Пусть $\mu=m^*$ и $\mu(X)<\infty$. Множество $E\subset X$ называется измеримым по Лебегу, если $\mu(X)=\mu(E)+\mu(E')$.
+\end{Def}
+
+Ясно, что если множество измеримо, то оно измеримо по Лебегу. Докажем обратное.
+\begin{Proof}
+  Пусть $E$ измеримо по Лебегу. Тогда существует по лемме об измеримой оболочке
+ \[ \exists\ A,B\in\Sigma\colon E\subset A,\ E'\subset B,\ \mu(E)=\mu(A),\ \mu(A')=\mu (B).\]
+ Отсюда вытекает, что $A\cup B=X$ и $\mu(A\cup B)=\mu(A)+\mu(B) - \mu(A\cup B)$ в силу аддитивности (ну надо на картинку посмотреть, ведь множества $A$ и $B$ измеримы). Это всё равно 
+\[\mu(A\cap B) = \mu(E)+\mu(E')-\mu(X) = 0.\]
+Ну а множество меры нуль измеримо, то есть $A\cap B\in \Sigma$. Так как $A\dd E\subset A\cap B$, $\mu(A\dd E)=0$ и разность тоже измерима. Пожтому множество $E$ можно записать как
+\[E = A\dd (A\dd E)\in\Sigma.\]
+\end{Proof}
+
+Значит эти определения конечной меры эквивалентны.
+
+\begin{The}[критерий измеримости Ваме"--~Гуссейна]
+  Пусть $\mu=m^*$ и $\mu(X)<\infty$. Тогда 
+\[E\in\Sigma\iff \forall\ \e>0\pau\exists\ B\in\Rim(S)\colon \mu(E\vartriangle B)<\e.\]
+\end{The}
+
+\begin{Proof}
+  Необходимость. Пусть $E\in\Sigma$ и $\e>0$. Тогда $\exists\ A_k\in S\colon E\subset A = \uN k1 A_k$ и по определению нижней грани
+\[\mu(A)\le \rY k1 m(A_k)\le \mu(E)+\frac\e2.\]
+Существует $n$, для которого $\rY k{n+1} m(A_k)<\frac\e2$. Положим $B_n:=\UN k1n A_k$. Тогда
+\[\mu (E\vartriangle B_n)\le \mu(E\dd B_n)+\mu(B_n\dd E)\le \mu(A\dd B_n) + \underbrace{\mu(A\dd E)}_{B_n\subset A}\le \rY k{n+1}m(A_k)+\frac\e2<\e.\]
+
+  Достаточность. Пусть $E\subset B\cup (E\vartriangle B)$. Из этого вытекает
+\[\big|\mu(E)-\mu(B)\big|\le \mu(E\vartriangle B)<\e,\qquad 
+  \big|\mu(E')-\mu(B')\big|\le \mu(E'\vartriangle B')=\mu(E\vartriangle B)<\e.\]
+  Если это сложить, получится неравенство
+\[ \mu(X)=\mu(B)+\mu(B'),\qquad \big|\mu(E)+\mu(E')-\mu(X)\big|<2\e.\]
+ Значит, $E\in\Sigma$.
+\end{Proof}
+
+Помните меру Стилтьеса? Сейчас определим меру Лебега"--~Стилтьеса
+\begin{Def}
+ Пусть есть полукольцо интервалов $S=\big\{[a,b)\big|a,b\in\E,a\le b\big\}$, есть $\alpha(x)\uparrow$ (неубывает) и $\forall\ x\in\R\pau \alpha(x-0)\hm=\alpha(x)$. Положим $m_\alpha\big([a,b)\big):=\alpha(b)-\alpha(a)$. Это $\sigma$-аддитивная мера. Пусть $m=\mu_a^*$ и $\Sigma_\alpha$ "--- $\sigma$-алгебра измеримых множеств. Тогда $\mu\colon \Sigma_\alpha\to\ol\R_+$ называется мерой Лебега"--~Стилтьеса.
+\end{Def}
+
+Если $\alpha(x) = x$, мера называется мерой Лебега.
+
+Приведём пример неизмеримого по Лебегу множества $E\subset [0,1]$. Введём отношение эквивалентности: $\forall\ x,y\in[0,1]\pau x\sim y\iff x-y\in\Q$. Множество $[0,1]$ разбивается на несчётное число классов эквивалентности $[0,1] = \bigsqcup\limits_{i\in I}C_i$, где при $i\ne j\pau C_i\cap C_j=\q$. Пусть $E = \big\{x_i\big\}_{i\in I}$, где $x_i\in C_i$. Пусть $\big\{e_n\big\}_{n=1}^\infty = [0,1]\cap\Q$. Тогда определим сдвиг на рациональное число $E_n = E + r_n$, $n=1,2,\ldots$ Если $E\in\Sigma$, то $E_n\in\Sigma$ (это уже не обязательно подмножество $[0,1]$) и $\mu(E)=\mu(E_n)$. Для $n\ne m\pau E_n\cap E_m=\q$. Видим, что $[0,1]\subset \uN n1 E_n$, а с другой стороны $\uN n1 E_n\subset [-1,2]$. Можем применить неравенсто для измеримых множеств
+\[1 = \mu\big([0,1]\big)\le \rY n1\mu(E_n)\le \mu\big([-1,2]\big) = 3.\]
+Если $\mu (E)\ne 0$, получаем бесконечную расходящуюся сумму, а если $\mu(E)=0$, то противоречие с первым неравенством.
+
+\section{Измеримые функции} %14 октября 2014. 
+
+Всюду на этой лекции тройка $(X,\Sigma,\mu)$ будет обозначать измеримое пространство. Мы сейчас будем использовать только следующие свойства измеримого пространства.
+
+\begin{roItems}
+  \item $\Sigma$ "--- $sigma$-алгебра с единицей $X$;
+  \item $\mu\colon \Sigma\to\ol\R_+$ "--- $\sigma$-аддитивная мера;
+  \item $\forall\ A\subset B\colon \mu(B)=0\pau A\in\Sigma$.
+\end{roItems}
+
+Пусть $E\subset X$.
+\begin{Def}
+  Функция $f\colon E\to \R$ называется измеримой, если
+  \[\forall\ c\in\R\pau E(f<c):=\big\{x\in E\big| f(x)<c\big\}\in\Sigma.\]
+\end{Def}
+
+Понятно, что из определения вытекает, что $E$ будет измеримо, как счётное объединение этих множеств. Кроме того
+\begin{eqnarray}
+  E(f\le c) &=& \caP n1 E\left(f<c+\frac1n\right)\in\Sigma;\\
+  E(f\ge c) &=& E\dd E(f<c)\in\Sigma;\\
+  E(f>c)     &=& E\dd E(f\le c)\in\Sigma;\\
+  E(a\le f<b)&=& E(f<b)\dd E(f< a)\in\Sigma;\\
+  E(a<f<b)     &=& E(f<b)\dd E(f\le a)\in\Sigma.
+\end{eqnarray}
+Таким образом, все промежутки измеримы.
+
+\begin{Lem}
+  $f\colon E\to \R$ измерима, если и только если 
+  \[\forall\ B\in \mathcal B(\R)\pau f^{-1}(B)\in\Sigma.\]
+\end{Lem}
+
+\begin{Proof}
+  Необходимость. Положим $S:=\big\{A\subset\R\mathcal B\big|f^{-1}(A)\in\Sigma\big\}$. Все интервалы измеримы и лежат в $S$. $S$ "--- $\sigma$-алгебра, $\R\in S$.
+  \[ f^{-1}(A\dd B) = f^{-1}(A)\dd f^{-1}(B),\pau f^{-1}\left(\uN n1 A_n\right) = 
+\]
+
+Таким образом $S$ "--- $\sigma$-алгебра, 
+
+Достаточность $E(f<c)=f^{-1}(-\infty,c)$ очевидна.
+\end{Proof}
+
+Покажем связь топологии и измеримости.
+Введём такое определение.
+\begin{Def}
+ Пусть $\mu$ "--- регулярна. Функция $f\colon E\to\R$, где $\pau E\in\Sigma$, обладает $C$-свойством, если
+\[\forall\ \e>0\pau \exists\ \text{компакт $K$, такой, что }
+\mu(E\dd K)<\e,\pau g=f\big|_K\text{ "--- непрерывная функция.}\]
+\end{Def}
+
+\begin{The}[Лузина]
+  Пусть $\mu$ "--- регулярная мера (в прошлый раз давали: для которой $X$ является метрическим пространством и ещё другие свойства есть) и все открытые множества измеримы. Тогда функция $f\colon E\to \R$ измерима $\iff$ она обладает $C$-свойством
+\end{The}
+
+\begin{Proof}
+  Необходимость. Фиксируем $\e>0$. Функция у нас $f$ измерима. Отсюда вытекает, что $E\in\Sigma$. Так как мера регулярна, то $\exists$ такие измеримые $A_0,B_0\in\Sigma$, такие что $A_0$ компактно, $B_0$ открыто, $A_0\subset E\subset B_0$ и $\mu (B_0\dd A_0)<\frac\e2$. (Это всё из регулярности меры.)
+
+Пусть задана система всех интервалов $\{I_n\}$ с рациональными концами на прямой $\R$. Их не более чем счётно, поэтому я их занумеровал натуральными числами. Поэтому также в силу регулярности $\exists\ A_n,B_n\in\Sigma$, такие что $A_n$ компактно, $B_n$ открыто, $A_n\subset f^{-1}(I_n)\subset B_n$, $\mu(B_n\dd A_n)<\frac{\e}{2^{n+1}}$.
+
+Определим $G:=\uN n0(B_n\dd A_n)\in$ "--- открыто, значит, измеримо, то есть $G\in\Sigma$. И его мера (по $\sigma$-аддитивности) $\mu G<\e$.
+
+Обозначим $K = E\dd G = A_0\dd \uN n1(B_n\dd A_n$. Оно является компактным как разность компактного $A_0$ и открытого.
+
+Осталось доказать, что органичение на компакт является непрерывной функцией. Пусть $g = f\big|_K$. Тогда прообраз интервала $f^{-1}(I_n) = f^{-1}(I_n)\cap K$. Ну и кроме того легко понять, что пересечение с этим компактом, это всё равно что $g^{-1}(I_n) =B_n\cap K$. При этом $B_n$ открыто, значит, $g^{-1}(I_n)$ открыто в $K$. Значит, $g$ непрерывна на компакте $K$.
+
+Вот мы доказали необходимость.
+
+Достаточность. Пусть $f$ обладает $C$-свойством. Тогда для каждого $n$ существует измеримый компакт $K_n\in\Sigma$, для которого $K_n\subset E,\ \mu (E\dd K_n)<\frac1n$, ну и ограничение $g_n\big|_{K_n}$ непрерывно.
+
+Обозначим $F:=\uN n1(E\dd K_n)$. Значит, функция $g_n$ непрерывна на компакте $K_n$, поэтому $\forall$ интервала $I=(a,b)\subset\R$ прообраз $g_n^{-1}(I) = f^{-1}(I)\cap K_n$. Существуеют такие открытые множества $B_n$, дающие в перечении $B_n\cap K_n = g^{-1}(I)$.
+\[f^{-1}(I)\dd F = \uN n1 f^{-1}(I)\cap K_n = \uN n1 B_n\cap K_n\]
+Так как $B_n$ и $K_n$ из $\sigma$-алгебры, то это всё измеримо. И $\mu (F) = 0$, $\mu\in\Sigma$, значит, и прообраз интегралов будет измеримым $f^{-1}(I)\in\Sigma$.
+\end{Proof}
+
+Следующая лемма нам поможет выяснить алгебраические свойства измеримых функций.
+\begin{Lem}
+ Пусть у нас функции $f,g\colon E\to \R$ измеримы, а функция $h$, заданная на открытом множестве $h\colon D\to \R$ непрерывна, причём $D\subset \R^2$ является открытым множеством. Предположим также, что $\forall\ x\in E\pau \big(f(x),g(x)\big)\in D$. Тогда можно рассмотреть сложную функцию $F(x) = h\big(f(x),g(x)\big)$, и она окажется измеримой.
+\end{Lem}
+
+\begin{Proof}
+  Пусть $c\in\R$ рассмотрим $D(h<c)$ "--- это множество открыто в $R^2$ в силу непрерывности $h$. Поэтому всякое открытое множество можно представить в виде объединения открытых прямоугольников не более чем счётного числа
+\[ D(h<c) = \uN n1\Pi_n,\pau \Pi_n=(a_n,b_n)\times (c_n,d_n).\]
+ Например, прямоугольники с рациональными вершинами.
+
+ Теперь запишем такое множество
+\[ E\big((f,g)\in \Pi_n\big) = E(a_n<f<b_n)\cap E(c_n<g<d_n).\]
+ Поэтому множество $E(F<c) = \uN n1 E\big((f,g)\in\Pi_n\big) = \uN n1 E(a_n<f<b_n)\cap E(c_n<g<d_n)$. Каждое из этих множеств измеримо, значит, и объединение будет тоже измеримым. Тем самым утверждение леммы доказано.
+\end{Proof}
+
+\begin{Sl}\label{avaSl1}
+Если $f,g\colon E\to\R$ измеримы, то $f+g$, $fg$, $\frac fg$ ($g\ne 0$), $f^p$ ($p>0,g\le 0$) измеримы.
+\end{Sl}
+
+\begin{Sl}\label{avaSl2}
+ Пусть теперь у нас задана последовательность измеримых функций $f_n\colon E\to\R$, $n\in\N$. Предположим, что в каждой точке $\inf\limits_n f_n,\ \sup f_n,\ \varlimsup\limits_{n\to\infty} f_n,\ \varliminf\limits_{n\to\infty}f_n$ измеримы, если принимают конечные значения.
+\end{Sl}
+
+\begin{Proof}
+  Легко проверяются такие формулы
+  \[
+  E\left(\inf\limits_n f_n<c\right)=\uN n1 E(f_n<c);\qquad
+  E\left(\sup\limits_n f_n>c\right)=\uN n1 E(f_n>c).
+\]
+
+А для пределов вот такие.
+\[\varlimsup\limits_{n\to\infty}f_n = \inf\limits_{k\ge 1}\left(\sup\limits_{n\ge k}f_n\right);\qquad
+\varliminf\limits_{n\to\infty}f_n = \sup\limits_{k\ge 1}\left(\inf\limits_{n\ge k}f_n\right).
+\]
+
+Таким образом все эти множества измеримы.
+\end{Proof}
+
+\begin{Sl}\label{avaSl3}
+  Пусть $f_n\colon E\to\R$ измеримы и $\forall\ x\in E\pau \exists\ f(x) = \varlimsup\limits_{n\to\infty} f_n(x)$. Тогда предел $f$ измерим.
+  \[ f :=\varlimsup f_n = \varliminf f_n.\]
+\end{Sl}
+
+  Введём такие обозначения.
+  $f_n,f,g\colon E\to\R$
+  \begin{roItems}
+   \item $f_n\to f$, если $\forall\ x\in E\pau \exists\ f(x) = \lim\limits_{n\to\infty} f_n(x)$.
+   \item $f_n\nearrow f$, если $f_n\te f$ и $f_1\le f_2\le\ldots$
+   \item $f_n\searrow f$, если $f_n\te f$ и $f_1\ge f_2\ge\ldots$
+\end{roItems}
+
+\begin{Def}
+  Фнкция $h\colon E\to \R$ называется простой, если $h(E) = \{h_1,h_2,\dots,h_n\}\subset \R$.
+\end{Def}
+
+\[h(x) = \RY k1n h_k \chi_{H_k}(x),\]
+где $H_k :=\big\{x\in E\big|h(x)=h_k\big\}$, $\chi_H(x) = \begin{cases} 1,&x\in H;\\ 0,&x \not\in H.\end{cases}$
+
+\begin{The}%%%%%%%%%%%%%%55
+  $\forall\ f\colon E\to \R_+$ измеримой существует неубывающая последовательность $h_n\nearrow f\ (n\to\infty)$, $h_n$ "--- измеримые и простые.
+\end{The}%% измеримо, если $h_k$ измеримы
+
+\begin{The}
+Построим по следующей формуле
+ \[ h_n(x):=\RY k1{2^{2n}}\frac{k-1}{2^n}\chi_{H_k^n}(x) + 2^n\chi_{H^n}(x),\]
+где $H_k^n := E\left(\frac{k-1}{2^n}\le f< \frac k{2^n}\right)$, $H^n:=E(f\ge w^n)$, $k=1,2,\ldots,k^{2n}$
+
+Покажем, что эта последовательность функций неубывающая. Ясно, что функции простые, что измеримые.
+Так как у нас $H_K^n = H_{2k-1}^{n+1} \sqcup H_{2k}^{n+1}$, $h_n(x) = \frac{k-1}{2^n} = \frac{2k-2}{2^{n+1}}\le h_{n-1}(x)$
+
+Кроме того $\big|f(x)-h_n(x)\big|<\frac1{2^n}$, если $x\in E(f<2^n)$.
+
+Поскольку $n$ убегает в бесконечность. $h_n\nearrow f$. Если $f$ ещё и ограничена, то сходимость будет ещё и равномерной.
+\end{The}
+
+\begin{Def}
+ $f_n\to f$ почти всюду (п.\,в.), если $\exists\ A\in\Sigma\colon \mu(A)=0,\ f_n\to f$ на $E\dd A$.
+\end{Def}
+\begin{Def}
+ $f_n\to f$ почти равномерно (п.\,р.), если $\forall\ \e>0\pau \exists\ A\in\Sigma\colon \mu(A)<\e$ и $f_n\rsh[]n f$ на $E\dd A$.
+\end{Def}
+\begin{Def}
+  $f\sim g $ эквивалентны, если $\exists\ A\in\Sigma\colon \mu(A)=0$ и $f(x)\equiv g(x)\pau \forall\ x\in E\dd A$.
+\end{Def} 
+Пределы почти всюду и почти равномерно определяются с точностью до эквивалентности. Если функция измерима, то и эквивалентная ей измерима.
+
+\begin{The}[Егорова]
+  Пусть у нас $\mu(E)<\infty$, функции $f_n\colon E\to\R$ измеримы. Тогда $f_n\to f$ почти всюду на $E\iff f_n\to f$ почти равномерно.
+\end{The}
+
+\begin{Proof}
+  Необходимость. Пусть у нас последовательность функций сходится почти всюду $f_n\to f$ (п.\,в.) на $E$. Легко видеть, что доказательство из определения почти равномерной сходимости сводится к случаю $f_n\to f$ всюду.
+
+Обозначим $B_n = \caP jn E\left(|f_j-f|<\frac 1k\right)$ для $k\ge 1$. Объединение таких множеств даст всё $E$. Таким образом, последовательность $B_n\nearrow E$. Мы доказывали свойство непрерывности меры снизу, поэтому $\lim\mu(B_n)=\mu(E)$.
+
+Обозначим дополнение $A_n:=E\dd B_n$. Тогда в силу равенства $\lim\mu(B_n)=\mu(E)$ предел $\lim\limits_{n\to\infty}\mu(A_n)=0$. Поэтому существует $n_k$, такой что $\mu(A_{n_k})<\frac\e{2^k}$ для любого $\e>0$.
+
+Обозначим $A:=\uN k1 A_{n_k}$. Тогда $\mu(A) < \rY k1\frac\e{2^k} = \e$. Дополнение $E\dd A$ есть пересечение $E\dd A = \caP k1$. Поэтому $\forall\ j\ge n_k,\ \forall\ x\in E\dd A\pau \big|f_j(x)-f(x)\big|<\frac1k$. Следовательно, последовательность сходится равномерно на множестве $E\dd A$.
+
+Достаточность. Пусть у нас последовательность функций $f_n\to f$ (п.\,р.) на $E$. Ну по определение
+$\forall\ n\pau \exists\ A_n\in\Sigma\colon \mu(A_n)<\frac1n,\ f_m\rsh[]mf$ на $E\dd A_n$.
+
+Обозначим $A:= \caP n1 A_n$, $\mu A=0$. И $\forall\ x\in E\dd A\imp f_m(x)\to f(x)$.
+\end{Proof}
+
+\begin{Def}
+  Пусть $f,f_n\colon E\to \R$ измеримы. $f_n\to f$ по мере $\mu$ на $E$ (здесь мы должны предположить, что функция измерима\ldotst{} сначала), если $\yo n\infty\mu\Big(E\big(|f_n-f|\ge\e\big)\big)=0$ для любого $\e>0$.
+\end{Def}
+
+\begin{The}
+ Тут два утверждения.
+ \begin{roItems}
+ \item Пусть $f,f_n\colon E\to \R$ измеримы, и $\mu (E)<\infty$, то из $f_n\te f$ (п.\,в.) на $E$ следует, что $f_n\te f $ по мере $E$.
+ \item Если $f_n\te f$ по мере на $E$, то $\exists$ подпоследовательность $f_{n_k}\to f$ (п.\,в.) на $E$.
+ \end{roItems}
+\end{The}
+
+\begin{Proof}
+ Для доказательства первого утверждения применим теорему Егорова. 
+\[\e>0\pau \exists\ A\in\Sigma\colon \mu(A)<\e,\ f_n\rsh[]n,\]
+то есть $\exists\ n\colon \forall\ k\ge n\pau \big|f_n(x)-f(x)\big|<\e$. Отсюда следует, что $\mu\Big(E\big(|f_k-f|\ge \e\big)\Big)\le \mu(A)<\e$. Значит, предел  $f_k\to f$ по мере на $E$.
+
+Доказательство второго утверждения. Пусть $f_n\to f$ по мере. Существует $m_k\colon \mu\Big(E\big(|f-f_{m_k}|\ge \frac1{2^k}\big)\Big)<\frac1{2^k}$ (из сходимости по мере следует, что предел этой конструкции равен нулю). Обозначим $A_n := \uN knE\big(|f-f_{m_k}|\ge \frac1{2^k}\Big)$ и рассмотрим $A:=\caP n1 A_n$. Имеем $\mu(A_n)<\frac1{2^{n-1}}$, получаем $\mu(A)=0$.
+
+Если $x\in E\dd A$, то $x\in E\dd A_n$ и $\big|f(x)-f_{m_k}(x)\big|<\frac1{2^k}$. Следовательно, $f_{m_k}\to f$ на $E\dd A$.
+\end{Proof}
+
+Ну и в заключение давайте примерчик один приведём. Пример Риссо. Покажем, что их сходимости по мере не следует сходимость почти всюду. Берём отрезок $E=[0,1]$, разбиваем его на отрезки $A_n=\left[\frac{k}{2^m},\frac{k+1}{2^n}\right]$. Каждый отрезок имеет меру $\mu(A_n) = \frac{1}{2^m}$. Нумерация такая: $n=2^m+k$, $k=0,1,\dots,2^m-1$, для того, чтобы нумерация была по одному индексу. $f_n(x) = \chi_{A_n}(x) = \begin{cases}1,&x\in A_n;\\0,&x\not\in A_n.\end{cases}$ Тогда мера Лебега
+\[\mu\left( f_n\ge \e\right) = \frac1{2^m}\to 0,\pau 0<\e\le 1.\]
+Наша последовательность $f_n\to 0$ по мере на отрезке $[0,1]$.
+
+Но эта последовательность не сходится никуда. Легко видеть
+\[\varlimsup f_n(x)=1,\pau x\in[0,1];\qquad \varliminf f_n(x)=0,\pau \forall\ x\in[0,1].\]
+К нулю в том числе не сходится.
+\section{Интеграл Лебега}
+Значит, у нас в дальшейшем $(X,\Sigma,\mu)$ "--- измеримое пространство (на прошлой лекции я говорил, что это такое), $E\in\Sigma$, через $\alpha$ будем обозначать $\alpha =\ar Ak1n$ "--- измеримое разбиение $E$, то есть $E = \DUN k1nA_k$, $A_k\in\Sigma$.
+
+ Пусть также есть $f\colon E\to\R_+$.
+ Введём обозначения $S_\alpha(f)=\RY k1na_k\mu(A_k)$ "--- сумма Дарбу\footnote{Так как $0\cdot\infty = 0$ по определению, все суммы Дарбу конечные.}, $a_k=\inf\limits_{x\in A_k}f(x)$, $a_k=a_k(f)$.
+
+\begin{Def}
+  Интегралом Лебега измеримой функции $f\colon E\to \R_+$ называется верхняя грань сумм Дарбу
+  \[ \Gint Ef\,d\mu = \sup\limits_\alpha = S_\alpha(f).\]
+
+  Если значения функции имеют произвольный знак, то есть $f\colon E\to\R$. То $f = f_+-f_-$, где $f_\pm(x) \hm= \max\{\pm f(x),0\}$, то интеграл Лебега определяется, как
+\[
+  \Gint Ef\,d\mu :=\Gint E f_+\,d\mu-\Gint Ef_-\,d\mu.
+\]
+
+  Функция называется интегрируемой по Лебегу (или суммируемой) $f\in L(E,\mu)$, если $f$ измерима и $\int\limits_E f_\pm\,d\mu<\infty$.
+\end{Def}
+
+Верхняя грань сумм Дарбу может быть и бесконечной. Это допустимо для неотрицательной функции. А в~случае знакопеременной функции может возникнуть неопределённость $\infty - \infty$.
+
+Теперь перейдём у свойствам.
+\begin{Ut}
+  Пусть $f\colon E\to\R_+$ измерима. Тогда $\Gint E f\,\mu=0\iff f\sim 0$, то есть $f=0$ почти всюду.
+\end{Ut}
+\begin{Proof}
+Необходимость. Если $\Gint Ef\,d\mu =0$, то все суммы Дарбу $S_\alpha(f)=0$. Рассмотрим $E_n = E(g\ge \frac1n)$. Ясно, что $E_n\nearrow E(f>0)$ и $\mu\big(E(f>0)\big)=\lim\mu(E) = 0$. Ведь мы можем строить разбиение так, чтобы одно из множеств было $E_n$.
+
+Достаточность. $\mu\big(E(f>0)\big)=0$, значит, $S_\alpha(f)=0$. Это из определения вытекает.
+\end{Proof}
+\begin{Ut}
+ Пусть $f,g\colon E\to\R_+$ измеримы и $f\le g$ на $E$. Тогда $\Gint E f\,d\mu\le \Gint g\,d\mu$.
+\end{Ut}
+\begin{Proof}
+  Так как сумма Дарбу для любого разбиения удовлетворяет соответствующему неравенству $S_\alpha(f)\le S_\alpha(g)$.
+\end{Proof}
+
+\begin{Ut}
+  Если $f,g\in L(E,\mu)$ и $f\le g$ на $E$, то $\Gint E f_+\,d\mu \le \Gint E g_+\,d\mu $ и $\Gint E f_-\,d\mu\ge \Gint E g_-\,d\mu$. А если вычтем, то
+  \[ \Gint E f\,d\mu\le \Gint E g\,d\mu.\]
+\end{Ut}
+
+\begin{Lem}
+  Пусть $h\in L(E,\mu)$ простая, то есть принимает конечное количество значений. Тогда, как мы знаем, она записывается в виде
+ \[ 
+   h(x) = \RY k1m =h_k\chi_{H_l}(x),\qquad H_l=\big\{x\in X\big| h(x)=h_l\big\}.
+ \]
+  Тогда $\Gint Eh\,d\mu = \RY l1m h_l\mu(E\cap H_l)$.
+\end{Lem}
+
+\begin{Proof}
+  Достаточно доказать для случая неотрицательной функции $h\ge 0$. $a_k(h)\le h_l$, если $B_{kl} = A_k\cap H_l\ne 0$,
+  \[
+    S_\alpha(f) = \RY k1n a_k\mu(A_k) = \RY k1n\RY l1m a_k\mu(B_{kl})\le \RY k1n\RY l1m h_l\mu(B_{kl}) = \RY l1m h_l\mu(E\cap H_l).
+  \]
+  Но если мы возьмём разбиение $\alpha = \ar{E\cap H}l1m$, будет знак равенства.
+\end{Proof}
+
+Из этой леммы вытекают следующие два следствия.
+
+\begin{Sl}
+  Если $h\in L(E,\mu)$ простая, то её интеграл обладает свойством аддитивности, то есть
+  \[
+    \Gint E h\,d\mu = \rY n1\Gint{E_n}h\,d\mu,\qquad E = \duN n1 E_n,\pau E_n\in\Sigma.
+  \]
+\end{Sl}
+
+\begin{Sl}
+  Если $f\colon E\to\R_+$ измерима, то $\Gint E f\,d\mu = \sup\limits_{0\le h\le f}\Gint E h\,\mu$, где $h$ "--- простая измеримая функция.
+\end{Sl}
+ \begin{Proof}
+  Доказательство последнего следстви. Имеем из свойства 2 $\Gint E h\,d\mu\le \Gint Eg\,d\mu$.
+\end{Proof}
+
+Следующая теорема одна из основных теорем.
+\begin{The}[о монотонной сходимости]
+  Пусть $f_n\colon E\to \R$ неотрицательны и измеримы, и $f_n\nearrow f$ на $E$. (Интеграл от $f$ при этом может быть бесконечным, ничего страшного.) Тогда 
+  \[
+    \yo n\infty\Gint Ef_n\,d\mu = \Gint E f\,d\mu.
+  \]
+\end{The}
+
+\begin{Proof}
+  Давайте обозначим этот предел через $I = \yo n\infty\Gint Ef_n\,d\mu$. Так как $f_n\le f$ в каждой точке, то этот предел будет оцениваться $I\le \Gint Ef\,d\mu$. Для доказательства нам нужно доказать обратное неравенство.
+
+  Возьмём произвольную простую функцию $h\colon 0\le h\le f$, $\e\in(0,1)$ и определим следующие множества $E_n = E(\e h\le f_n)\nearrow E$. Запишем следующим очевидные равенства
+  \[
+    \e\Gint {E_n}h\,d\mu = \Gint {E_n}\e h\,d\mu\overset2\le \Gint{E_n}f_n\,d\mu\overset2\le\Gint E f_n\,d\mu\le I.
+  \]
+Ну а теперь заметим, что $\yo n\infty h\,d\mu = \Gint E h\,d\mu$ в силу следствия 1. Переходя к пределу получаем $\e\Gint Eh\,d\mu\le I$. В~силу произвольности $\e$
+ \[
+  \Gint Eh\,d\mu\le I\pau \forall\ 0\le h\le f.
+ \]
+ По свойству 3 имеем $G\int Ef\,d\mu\le I$.
+\end{Proof}
+
+
+Следующее важное свойство четвёртое. Свойство линейности интеграла.
+\begin{Ut}
+  Пусть $f,g\in L(E,\mu)$ и $\lambda\in\R$. Тогда $\Gint E\lambda f\,d\mu = \lambda\Gint Ef\,d\mu$ и $\Gint E(f+g)\,d\mu = \Gint E f\,d\mu+\Gint Eg\,d\mu$.
+\end{Ut}
+\begin{Proof}
+  Первое свойство настолько очевидно, что я и доказывать не хочу. Докажем второе. Пусть пока что $f,g\le 0$ и простые. Нужно вспомнить доказанную лемму и взять пересечение разбиений.
+
+Второй случай. Пусть у нас теперь $f$ и $g$ неотрицательны и измеримы. В этом случае мы с вами доказывали теорему о том, что всякая неотрицательная функция является монотонным пределом неотрицательных простых функций, то есть $\exists\ f_n\nearrow f$ и $g_n\nearrow g$, где $f_n,g_n$ "--- простые. Тогда и $f_n+g_n\nearrow f+g$. Ну а теперь применяем теорему о монотонной сходимости.
+ \[
+  \Gint E(f+g)\,d\mu = \yo n\infty\Gint E(f_n+g_n)\,d\mu \overset1= \yo n\infty\Gint Ef_n\,d\mu+\yo n\infty\Gint Efg_n\,d\mu
+\]
+ну и по теореме о монотонной сходимости получаем $=\Gint Ef\,d\mu+\Gint Eg\,d\mu$.
+
+Ну и третий случай, когда $f,g\in L(E,\mu)$, $f=f_+-f_-$, $g=g_+-g_-$. Тогда $(f+g) = (f+g)_+-(f+g)_-$, и мы получим такое равенство
+ \[
+   (f+g)_+f_-+g_+ = (f+g)_-+f_++g_-.
+ \]
+Это равенство можно проинтегрировать по свойству 2, собрать слагаемые обратно и получить результат.
+\end{Proof}
+
+\begin{Ut}
+  Пусть $f\in L(E,\mu)$, то $|f|\in L(E,\mu)$ и выполнены соответствующие неравенства
+  \[
+    \bigg|\Gint Ef\,d\mu\bigg|\le \Gint E|f|\,d\mu.
+  \]
+\end{Ut}
+
+\begin{Proof}
+  $|f| = f_+ + f_-\in L(E,\mu)$ по доказанным свойствам. Кроме того $-|f|\le f\le |f|$, применяем свойство 2, получаем $-\Gint E|f|\le \Gint Ef\,d\mu\le \Gint E|f|\,d\mu$.
+\end{Proof}
+
+\begin{Lem}[Фату]
+  Пусть $f_n\colon E\to\R_+$ измеримы и $f = \varliminf f_n$ почти всюду на $E$. Тогда $\Gint Ef\,d\mu\le \varliminf\Gint Ef_n\,d\mu$.
+\end{Lem}
+
+\begin{Proof}
+  По свойству 4 можно избавиться от требования условия почти всюду. Будем считать, что $f=\varliminf f_n$ всюду на $E$. Ну и введём такие функции $g_n=\inf\limits_{n\ge m}f_n$ "--- это измеримые неотрицательные функции (мы доказывали), ну и кроме того $g_m\nearrow f$ по определению предела.
+
+Так как $\forall\ n\ge n\pau g_m\le f_n$, то у нас $\Gint E g_m\,d\mu\le \inf\limits_{n\ge m}\Gint Ef_n\,e\mu$. Ну и теперь применяем теорему о монотонной сходимости.
+ \[
+  \Gint f\,d\mu = \yo n\infty \Gint Eg_n\,d\mu\le \yo m\infty\inf\limits_{n\ge m}\Gint Ef_n\,d\mu = \varliminf\Gint Ef_n\,d\mu.
+\]
+И лемма доказана.
+\end{Proof}
+
+\begin{The}[Лебега о предельном переходе]
+  Пусть $f_n\colon E\to\R$ измеримы, $f = \lim f_n$ почти всюду на множестве $E$, и существует функция $g\in L(E,\mu)$, $g\ge 0$ и $|f_n|\le g$\footnote{Эта функция $g$ называется интегрируемой мажорантой.} на множестве $E$ (можно и оставить здесь почти всюду). Тогда $f,f_n\in L(E,\mu)$ и $\yo n\infty \Gint Ef_n\,d\mu = \Gint Ef\,d\mu$.
+\end{The}
+
+\begin{Proof}
+  Не поскольку $f$ измерима, то $f_n$ тоже будет измерима. Будут выполнены такие неравенства почти всюду: $f_{n\pm}, f_\pm\le g$ почти всюду на $E$. По свойству 2 интегралы будут конечны, то есть $f,f_n\in L(E,\mu)$. Кроме того $g\pm f_n\ge 0$ в силу того, что $|f_n|\le g$ на $E$; $g\pm f_n\to g\pm f$, ну и нижний предел тоже сходится. Можно применить лемму Фату
+ \[
+   \Gint E(f+g)\,d\mu\le \varliminf\Gint E(g+f_n)\,d\mu,\qquad
+   \Gint E(g-f)\,d\mu\le \varliminf\Gint E(g-f_n)\,d\mu
+ \]
+В силу аддитивности интеграла, на $g$ погу сократить в каждом неравенстве. Останется два неравенства. Из-за минуса нижний предел сменится на верхний.
+\[
+  \varlimsup\Gint E f_n\,d\mu\le \Gint Ef\,d\mu\le\varliminf\Gint Ef_n\,d\mu.
+\]
+И теорема доказана.
+\end{Proof}
+
+\begin{The}[о $\sigma$-аддитивности интеграла Лебега]
+  Пусть $f\in L(E,\mu)$, $E=\duN n1E_n$, $E_n\in\Sigma$. Тогда $\Gint Ef\,d\mu \hm= \rY n1\Gint {E_n}f\,d\mu$.
+\end{The}
+
+\begin{Proof}
+  Понятно, что $f= f_+-f_-$, и доказательство сводится к случаю $f\ge0$. Пусть сначала $E=E_1\sqcup E_2$, $E_1,E_2\in\Sigma$. Функция неотрицательна, значит можно рассуждать суммами Дарбу. Пусть $\alpha$ "--- разбиение множества $E$. Тогда у нас индуцируются разбиения $\alpha_1 = \alpha\cap E_1$, $\alpha_2 = \alpha\cap E_2$. Легко понять, что тогда $S_\alpha(f)\le S_{\alpha_1}(f)+S_{\alpha_2}(f)$.
+
+ С другой стороны. Если $\alpha_1$ "--- разбиение $E_1$, $\alpha_2$ "--- разбиение $E_2$, можно построить $\alpha = \alpha_1\sqcup \alpha_2$. В этом случае у нас будет равенство $S_\alpha(f) = S_{\alpha_1}(f)+S_{\alpha_2}(f)$. Значит, и верхняя грань будет удовлетворять этому равенству:
+\[
+  \Gint f\,d\mu = \Gint {E_1}f\,d\mu +\Gint{E_2}f\,d\mu.
+\]
+
+Ну и теперь общий случай. Пусть $f\ge 0$, положим $F_n:=\DUN k1n E_k$, $f_n:=\chi_{F_n}\cdot f$. Тогда $f_n\nearrow f$ и можно применить теорему о монотонной сходимости
+\[
+  \Gint E f\,d\mu= \yo n\infty \Gint Ef_n\,d\mu = \yo n\infty \Gint {F_n}f\,d\mu.
+\]
+Раз для двух множеств верно, то и для любого конечно числа множеств будет верно и $\Gint E f\,d\mu = \yo n\infty \RY k1n\Gint {E_n}f\,d\mu$.
+\end{Proof}
+
+\begin{The}[Неравенство Чебышёва]
+ Пусть $f\colon E\to\R_+$ измерима. Тогда $\forall\ t>0\pau \mu(E_t)\le \frac1t\Gint Ef\,d\mu$, $E_+:= E(f\ge t)$.
+\end{The}
+С этой теоремы началась теория вероятности. До Чебышёва теория вероятность было только интуитивной.
+
+\begin{Proof}
+  Имеем по свойству 2: $\Gint Ef\,d\mu\ge \Gint {E_t}f\,d\mu\ge t\mu(E_t)$.
+\end{Proof}
+
+Введём такое определение.
+\begin{Def}
+  Пусть $f\colon E\to \R_+$ измерима. Обозначим через $\lambda_f(t) = \mu(E_t)$, $t>0$, $E_t:=E(f\ge t)$. $\lambda_f(t)$ называется функцией распределения (значений $f$).
+\end{Def}
+
+\begin{Ut}
+Свойства. Докажем только последнее.
+\begin{roItems}
+  \item $\lambda_f(t)\downarrow$;
+  \item $\lambda_f(t-0)=\lambda_f(t)$;
+  \item $\exists\ a\colon 0<a\le \infty,\ \lambda_f(t)=\infty$ при $t\in(0,a)$;
+  \item Если $f\in L(E,\mu)$, то $\lambda_f(t)<\infty$ при $t>0$;
+  \item Если $\mu\big(E(f=t)\big)>0$, то $t$ "--- точка разрыва $\lambda_f$;
+  \item $\lambda_f(t) = \oo\left(\frac1t\right)$, если $f\in L(E,\mu)$.
+\end{roItems}
+\end{Ut}
+\begin{Proof}
+$E_t\searrow \q$, $\yo t\infty \Gint {E_+}f\,d\mu$. Ну а следовательно $t\mu(E_t)\le \Gint{E_+}f\,d\mu$.
+\end{Proof}
+
+\begin{Def}
+  Если $f\,g\in E\colon \R_+$ измеримы и $\lambda_f(t) = \lambda_g(t)\pau \forall\ t>0$, то $f$ и $g$ называются равноизмеримыми.
+\end{Def}
+
+Пусть $f,g\in L(E,\mu)$. Тогда применяя теорему Фубини (которая у нас ещё будет) можно написать такие равенства 
+\[\Gint Ef\,d\mu = \int\limits_0^\infty\lambda_f(t)\,dt;\qquad \Gint Eg\,d\mu = \int\limits_0^\infty\lambda_g(t)\,dt.\]
