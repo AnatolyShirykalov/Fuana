@@ -1,0 +1,211 @@
+\section{Мера множеств}
+Пусть $X$ "--- множество. Тогда $2^X$ "--- совокупность всех его подмножеств, а $S\subset 2^X$ называется системой множеств.
+
+Положим по определению $E = \bigcup\limits{A\in S}A$. Это называется единицей системы $S$.
+
+\begin{Def}
+  Система $S$ называется кольцом, если $\forall\ A,B\in S\pau A\cup B,A\dd B\in S$, то есть кольцо замкнуто относительно конечного числа объединений и разностей. Если кольцо $S\supset E$, оно называется алгеброй.
+\end{Def}
+
+Пусть $S\subset 2^X$. Тогда $\Rim(S)$ "--- наименьшее кольцо, содержащее систему $S$, а $\Aim(S)$ "--- наименьшая алгебра, содержащая $S$, то есть $\Rim(S)$ пересечение всех колец, содержащих $S$, $\Aim(S)$ "--- пересечение всех алгебр, содержащих $S$.
+
+\begin{Ut}
+  $S$ "--- кольцо, если и только если $\forall\ A,B\in S\pau A\cap B\in S$ и $A\sdd B\in S$.
+\end{Ut}
+
+\begin{Proof}
+  Это доказывается с помощью таких равенств
+\[
+  A\cap B = A\dd (A\dd B);\quad A\sdd B = (A\dd B)\cup (B\dd A);\quad
+  A\cup B = (A\sdd B)\sdd(A\cap B);\quad A\dd B = A\sdd (A\cap B).
+\]
+\end{Proof}
+
+\begin{Def}
+  Кольцо (алгебра) $S$ называется $\sigma$-кольцом (-алгеброй), если
+\[
+  \forall\ A_n\in S\pau \uN 1n A_n\in S.
+\]
+\end{Def}
+
+\begin{Def}
+  Кольцао (алгебра) $S$ называется $\delta$-кольцом (-алгеброй), если
+\[
+  \forall\ A_n\in S\pau \caP 1n A_n\in S.
+\]
+\end{Def}
+
+\begin{Ut} 
+  Условия для $\sigma$ и $\delta$ алгебры совпадают.
+\end{Ut}
+\begin{Proof}
+  Запишем формулы двойственности.
+\[
+  E\dd \bigg( \uN n1 A_n\bigg) = \caP n1(E\dd A_n),\quad
+  E\dd \bigg( \caP n1 A_n\bigg) = \uN n1(E\dd A_n).
+\]
+Утверждение, очевидно, доказано.
+\end{Proof}
+
+$\Rim_\sigma(S)$ "--- это наименьшее $\sigma$-кольцо, содержащее $S$, $\Aim_\sigma(S)$ "--- это наименьшая $\sigma$-алгебра, содержащая $S$.
+\begin{Def}
+  Пусть $(X,\rho)$ "--- метрическое пространство, $\tau$ "--- топология. Тогда $\Aim_\sigma(\tau) =: \B(X)$ называется борелевской $\sigma$-алгеброй метрического пространства $X$.
+\end{Def}
+
+\begin{Def}
+  $S$ называется полукольцом, если $\forall\ A,B\in S\pau A\cap B\in S$ и $A\dd B = \DUN i1n C_i$, где $C_i\in S$.
+\end{Def}
+
+\begin{Ut}
+  Если $S$ "--- полукольцо, то $\forall A, B_i\in S\pau A\dd \UN i1n B_i = \CAP j1n C_j$, где $C_j\in S$.
+\end{Ut}
+
+\begin{Proof}
+  По индукции. Для $n=1$ верно. Пусть верно для $n$, докажем для $n+1$.
+\[
+  A\dd \UN i1{n+1} B_i = A\dd \UN i1nB_i\dd B_{n+1},
+\]
+что есть $\DUN j1m (C_j\dd B_{n+1}) = \DUN j1m\DUN i1n C_{ij}$, где $C_{ij}\in S$, что и требовалось доказать.
+\end{Proof}
+
+\begin{Lem}
+  Пусть $S$ "--- полукольцо. Тогда $A\in \Rim(S)$ если и только если $A = \DUN i1n A_i$, где $A_i\in S$.
+\end{Lem}
+
+\begin{Proof}
+  Положим $R = \{ A = \DUN i1n A_i\mid n\in\N,\ A_i\in S\}$. Отметим, что $R\subset \Rim(S)$. Покажем, что $R$ "--- кольцо.
+\[
+  A = \DUN i1n A_i,\quad B=\DUN j1mB_j,\quad A_i,B_j\in S.
+\]
+$A\dd B = \DUN i1n (A_i\dd B)$. В силу доказанного выше утверждения это является $\DUN i1n\DUN j1mC_{ij} C_{ij}$, где $C_{ij}\in S$. Следовательно, $A\dd B\in R$.
+
+$A\cup B = A\dd B\sqcup B\in R$. Следовательно $R$ "--- кольцо. И, следовательно, $R = \Rim(S)$.
+\end{Proof}
+
+Пусть $X$ "--- множество. Опять же $S\subset 2^X$. И функция $\phi\colon S\to \F$, где $\F\in\{\R,\C\}$.
+\begin{Def}
+ Функция $\phi$ называется аддитивной, если $\phi (A\sqcup B) = \phi(A)+\phi(B)\pau \forall\ A,B,A\sqcup B\in S$. $\phi$ называется конечно аддитивной, если $\phi \bigg(\DUN i1n A_i\bigg)  = \RY i1n\phi(A_i)\pau A_i,\DUN i1n A_i\in S\pau \forall\ n\in \N$.
+\end{Def}
+\begin{Def}
+  $\phi$ называется $\sigma$-аддитивной, если $\phi \bigg(\duN i1 A_i\bigg)  = \rY i1\phi(A_i)\pau A_i,\duN i1 A_i\in S\pau \forall\ n\in \N$.
+\end{Def}
+
+Так как $\duN i1$ не зависит от порядка множеств, то ряд сходится абсолютно.
+\begin{Def}
+  Функция $m\colon S\to\R_+$ называется конечно-аддитивной мерой ($\sigma$-аддитивной мерой), если
+\begin{enumerate}
+  \item $S$ "--- это полукольцо;
+  \item $m$ конечно (или $\sigma$-) аддитивна.
+\end{enumerate}
+\end{Def}
+
+\begin{Def}
+  Мера $m_1\colon S_1\colon R_+$ называется называется продолжением меры $m\colon S\to \R_+$, если $S\subset S_1$ и ограничение $m_1\big|_{S_1} = m$.
+\end{Def}
+
+\begin{The}
+  Для любой меры $m\colon S\to \R_+\pau\exists!\ m_1\colon S_1\to \R_+$ продолжение, где $S_1\in \Rim(S)$.
+\end{The}
+\begin{Proof}
+  Определим $m_1(A) = \RY i1n m(A_i)$, где $A = \DUN i1n A_i$, $A_i\in S$. Пусть $A = \DUN i1n A_i = \DUN j1m B_j$. Тогда одновременно выполнится $A = \DUN i1n\DUN j1m (A_i\cap B_j)$ и $m_1(A) = \RY i1n\RY j1m m(A_i\cap B_j)$ не зависит от разложения $A$.
+
+ Пусть $A = \DUN i1n A_i$, $A_i\in\Rim(S)$. В свою очередь $A_i = \DUN j1{m_i} A_{ij}$, где $A_{ij}\in S$. Соответственно, 
+\[
+  A = \DUN i1n\DUN j1{m_i}A_{ij},\quad m_1(A) =\RY i1n\RY j1{m_i} m(A_{ij}) = \RY i1nm_1(A_i).
+\]
+Таким образом доказана конечная аддитивность. Устремив $n\to\infty$  в предыдущих рассуждениях, докажем $\sigma$-аддитивность.
+\end{Proof} 
+
+\subsection{Свойства $\sigma$-аддитивной меры}
+Пусть $m\colon S\to \R_+$ "--- $\sigma$-аддитивная мера. Тогда
+\begin{Ut}
+  $m(\q) = m(\q\sqcup \q) = 2m(\q)\imp m(\q) = 0$.
+\end{Ut}
+\begin{Ut}[монотонность]
+  Если $\duN i1 A_i\subset A$, причём $A_i,A\in S$, то $\rY i1m(A_i)\le m(A)$.
+\end{Ut}
+\begin{Proof}
+  Возьмём фиксированное $n\in\N$. Тогда $\DUN i1n A_i\subset A$ и $A = \DUN i1n A_i \sqcup \DUN j1m B_j$, $A_i,B_j\in S$. Тогда
+\[
+  m(A) = \RY i1n m(A_i)\RY j1n m(B_j) \ge \RY i1n m(A_i).
+\]
+Устремим $n\to\infty$ и получим требуемое.
+\end{Proof}
+
+\begin{Ut}[полуаддитивность]
+  Пусть $A\subset \uN i1A_i$, где $A,A_i,\uN 1iA_i=: B\in S$. Тогда $m(A)\le \rY i1m(A_i)$.
+\end{Ut}
+\begin{Proof}
+  Берём $B_1 = A_1$, $B_k = A_k\dd \bigg(\UN i1{k-1} A_i\bigg)$, где $k=2,3,\dots$ $B_k\in \Rim(S)$. Считаем, что $m$ определена для $B_k$, как продолжение меры. $B = \duN k1B_k$ и $m(B) = \rY k1B_k$. Так как $A\subset B$, $m(A)\le m(B)\le \rY k1B_k\le \rY k1A_k$.
+\end{Proof}
+\begin{Ut}[непрерывность снизу]
+  Если $A_i\uparrow A$, $A,A_i\in S$, то $\yo i\to \infty m(A_i) = m(A)$.
+\end{Ut}
+\begin{Proof}
+  Что значит стрелочка вверх: $A_1\subset A_2\subset \dots$ и $\uN i1A_i = A$. Пусть $A_0 = \q$, $B_i = A_i\dd A_{i-1}$. Тогда
+\[
+  A = \DUN i1\infty B_i,\pau B_i\in\Rim(S).
+\]
+Считаем меру $m$ продолженной на $\Rim(S)$. Тогда $m(A) = \RY i1\infty m(B_i) = \rY i1(A_i\dd A_{i-1}) = \yo i\infty m(A_i)$.
+\end{Proof}
+Сформулируем обратное утверждение.
+\begin{Ut}
+  Если конечно аддитивная мера непрерывна снизу, то она $\sigma$-аддитивна.
+\end{Ut}
+
+\begin{Proof}
+  Путьс $A = \duN i1A_i$, $A_i,A\in S$. Положим, $B_n = \DUN i1n A_i$. Тогда $B_n\uparrow A$ и $m(A) = \yo n\infty m(B_n) = \rY i1m(A_i)$.
+\end{Proof}
+
+\begin{Ut}[непрерывность сверху]
+  Если $A_i\downarrow A$, $A_i,A\in S$, то $\yo i\to \infty m(A_i) = m(A)$.
+\end{Ut}
+\begin{Proof}
+  $A_1\supset A_2\supset \dots$ и $\caP i1A_i = A$. Обозначим $B = A_1\dd A$, $B_i := A_1\dd A_i$, $i=1,2,\dots$ Тогда $B_i\uparrow B$ и $m(B) = \yo i\infty m(B_i)$.  $m(A_i)- m(A) = m(A_i) - \yo i\infty m(A_i)$, следовательно, $m(A) = \yo i\infty m(A_i)$.
+\end{Proof}
+\begin{Ut}
+  Если конечно аддитивная мера непрерывна сверху, то она $\sigma$-аддитивна.
+\end{Ut}
+\begin{Proof}
+  $A = \duN i1A_i$, $A,A_i\in S$, $B_n = \DUN i1n A_i$, $B_n\downarrow \q$. $\yo n\infty B_n= 0$. Тогда
+\[
+  m(A) - \yo n\infty \RY i1nm(A_i) = 0.
+\]
+Что и требовалось доказать.
+\end{Proof}
+\begin{Def}
+  Пусть $(X,\rho)$ "--- метрическое пространство, $S$ "--- полукольцо в $X$. Мера $m\colon S\to \R_+$ называется регулярной, если
+\[
+  \forall\ \e>0,\ \forall\ A\in S\pau \exists\ B,C\in S\colon \ol B\text{ компактно},\ \ol B\subset A\subset C^0, m(C\dd B)<\e.
+\]
+\end{Def}
+\begin{The}
+  Каждая регулярная мера $m\colon S\to\R_+$ является $\sigma$-аддитивной.
+\end{The}
+\begin{Proof}
+  Пусть $A = \duN i1A_i$, $A_i,A\in S$. $m(A) \ge \rY i1m(A_i)$. Существуют $B,C,B_i,C_i\in S\colon \ol B,\ol B_i$ "--- компакты, $\ol B\subset A\subset C^0, \ol B_i\subset A_i\subset C^0_i$ и $m(C\dd B)<\frac\e2$, $m(C_i\dd B_i)<\frac\e{2^{i+1}}$.
+
+$\ol B\subset \uN i1 C_i^0$. Из компактности следует, что $\ol B\subset \UN i1nC_i^0$. Следовательно, $m(B)\le \RY i1nm(C_i)$.
+\[
+  m(A)\le m(C)\le m(B)+\frac\e2\le \RY i1nm(C_i)+\frac\e2\le \RY i1n m(B_i) + \RY i1n\frac\e{2^{i+1}}+\frac\e2\le \rY i1m(A_i)+\e.
+\]
+Так как $\e$ "--- произвольная постоянная, получаем требуемое.
+\end{Proof}
+\subsection{Мера Стилтьеса в $\R$}
+Пусть $S = \big\{[a,b)\big| a,b\in\R,\ a\le b\big\}$. Это полукольцо. Пусть $\alpha(x)$ "--- неубывающая функция на $\R$.
+\begin{Def}
+  $m_\alpha\big([a,b)\big) = \alpha(b)-\alpha(a)$. $\alpha$ называется функцией распределения, а $m_\alpha$ "--- конечно-аддитивная мера.
+\end{Def}
+\begin{The}
+  Мера $m_\alpha$ является $\sigma$-аддитивной, если и только если $\alpha(x)$ непрерывна слева.
+\end{The}
+\begin{Proof}
+ Необходимость. Пусть $x_n\uparrow x$. Тогда полуинтервал $[x_n,x)\downarrow\q$. Следовательно, существует предел $\yo n\infty m_\alpha\big([x_n,x)\big) = 0$. Следовательно, $\alpha(x) = \yo n\infty \alpha(x_n)$, то есть $\alpha$ непрерывна слева.
+
+Достаточноть. Пусть $\forall\ x\in \R\pau \alpha(x-0) = \alpha(x)$. Полуинтервал $[a,b-\delta)\subset [a,b)\subset (a-\delta,b)\pau \forall\ \delta>0$.
+\[
+  m_\alpha\big([a-\delta,b)\dd [a,b-\delta)\big) = m_\alpha\big([a-\delta,a)\big) + m_\alpha\big([b-\delta,b)\big) = 
+  \alpha(a) - \alpha(a-\delta) + \alpha(b)- \alpha(b-\delta)\le \frac\e2+\frac\e2 = \e.
+\]
+Мера Стилтьеса регулярна, следовательно, $\sigma$-аддитивна.
+\end{Proof}
