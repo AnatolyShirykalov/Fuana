@@ -83,9 +83,9 @@ $B(X)$ не является евклидовым пространством. П
 \[
   \le \|x-x_0\|\cdot\|y_0\| + \|x_0\|\cdot \|y-y_0\| + \|x-x_0\|\cdot \|y-y_0\|
 \]
-Зафиксируем $\e\ra 0$. Возьмём $C\ra \max\big(\|x_0\|,\|y_0\|\big)$ Берём $0\la \max\left\{\delta\la \frac\e{3C},C\right\}$. Тогда для $\|x-x_0\|\la \delta$ и $\|y-y_0\|\la \delta$ имеем
+Зафиксируем $\e> 0$. Возьмём $C> \max\big(\|x_0\|,\|y_0\|\big)$ Берём $0<\delta< \max\left\{\delta\la \frac\e{3C},C\right\}$. Тогда для $\|x-x_0\|< \delta$ и $\|y-y_0\|< \delta$ имеем
 \[
-  \le \|x-x_0\|\cdot\|y_0\| + \|x_0\|\cdot \|y-y_0\| + \|x-x_0\|\cdot \|y-y_0\| \la \e.
+  \le \|x-x_0\|\cdot\|y_0\| + \|x_0\|\cdot \|y-y_0\| + \|x-x_0\|\cdot \|y-y_0\| < \e.
 \]
 \end{Proof}
 
@@ -155,8 +155,8 @@ $B(X)$ не является евклидовым пространством. П
   \rho(x,L) = \sqrt{\frac{D(x_1,\dots,x_n,x)}{D(x_1,\dots,x_n)}},\quad
   D(x_1,\dots,x_n) = \det\begin{pmatrix}
    \la x_1,x_1\ra &\dots & \la x_n,x_1\ra\\
-   \vdots & \ddots & \vdots
-   \la x_1,x_n\ra &\dots & \la x_n,x_n\ra\\
+   \vdots & \ddots & \vdots\\
+   \la x_1,x_n\ra &\dots & \la x_n,x_n\ra
 \end{pmatrix}
 \]
 Этот определитель, составленный из скалярных произведений, называется определителем Грама.
