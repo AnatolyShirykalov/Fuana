@@ -1,0 +1,269 @@
+\section{Обобщённые функции. Преобразование Фурье обобщённых функций}
+\subsection{Пространство Шварца}
+Будем обозначать $x^\beta = x_1^{\b_1}\dots x_m^{\b_m}$, $x=(x_1,\dots,x_m)\in\R^m$, $\b = (\b_1,\dots,\b_m)\in\Z_+^m$, $\F\in\{\R,\C\}$. Также обозначим
+\[
+  S(\R^m) = \Big\{\phi\colon \R^m\to\F\Bigm|\phi\in C^\infty(\R^n)\text{ и } \forall\ \a,\b\in\Z_+^m\pau \sup\limits_{x\in\R^m}\big|x^\b\dl^\a\phi(x)\big|<\infty\Big\}.
+\]
+Такие функции называются быстро убывающими. Они убывают быстрее любой степени. Определим на этом пространстве сходимость
+\[
+  \phi_n\te\phi \text{ в }S(\R^m)\iff 
+  \forall\ \a,\b\in\Z_+^m\pau x^\beta\dl^\a\phi_n(x)\rsh[ ]nx^\b\dl^\a\phi(x)\text{ на }\R^m.
+\]
+Данное пространство сходимости называется пространством Шварца.
+\begin{Def}
+$S'(\R^m)$ называется пространством обобщённых функций медленного роста.
+\end{Def}
+Например, берём $f(x) = e^{x^2}$, она растёт быстрее многочлена. И она определяет обобщённую функцию, так как локально интегрируема
+\[
+  \forall\ \phi\in\D(\R)\pau \la f,\phi\ra = \Gint\R f(x)\,\phi(x)\,dx.
+\]
+Однако эта обобщённая функция $f\not\in S'(\R)$, поскольку для $\phi(x) = e^{-\frac{x^2}2}\in S(\R)$, но её подставить нельзя под интеграл, определяющий $f$. Обобщённая функция $f$ непродолжаема на $S(\R)$. Таким образом это доказывается. Но $f\in \D'(\R)$.
+
+Из определения вытекают свойства.
+\begin{Ut}
+ Если $f\in S'(\R^m)$, то $f$ линейный функционал, то есть 
+\[
+\forall\ \phi_1,\phi_2\in S(\R^m),\ \forall\ \l_1,\l_2\in\F\pau \la f,\l_1\phi_1+\l_2\phi_2\ra = \l_1\la f,\phi_1\ra + \l_2\la f,\phi_2\ra.
+\]
+\end{Ut}
+\begin{Ut}
+  Если $f\in S'(\R^n)$, то $f$ непрерывный функционал, то есть если $\phi_n\te\phi$ в $S(\R^m)$, то $\la f,\phi_n\ra\te \la f,\phi\ra$.
+\end{Ut}
+\begin{Ut}
+$S'(\R^m)$ полно, то есть если $f_n\in S'(\R^m)$ и $f_n\te f$ в $S'(\R^m)$, то $f\in S'(\R^m)$ (сходимость здесь имеется в виду поточечная).
+\end{Ut}
+Это надо обосновать. Используем теорему о полноте сопряжённого пространства.
+\begin{Proof}
+  Докажем, что $S(\R^m)$ полное линейное метрическое пространство. Для этого найдём счётную систему полунорм, которой задаётся сходимость.
+\[
+  s_l(\phi):=\sum\limits_{|\a|\le l}\sup\limits_{x\in\R^m}\big(1+\|x\|^2\big)^l\big|\dl^\a\phi(x)\big|.
+\]
+Здесь $l=0,1,\dots$, а $\|x\| = \RY k1mx_k^2$.
+
+Раз пространство счётно нормированное, то можно ввести метрику, которая задаёт ту же сходимость.
+
+Если все производные сходятся равномерно, то у функции-предела будут все производные.
+\end{Proof}
+Сейчас мы докажем, что каждый функционал из $S'(\R^m)$ является обобщённой функцией. Мы пока только назвали.
+\begin{Lem}
+  $\D(\R^m)\subset S(\R^m)$ всюду плотно (раз на бесконечности ноль, то, конечно, убудет быстрее любой степени).
+\end{Lem}
+\begin{Proof}
+  Рассмотрим такую функцию $\eta\in\D(\R^m)$, которая
+\[\eta(x) = \begin{cases}
+1,& \|x\|\le 1;\\ 0,&\|x\|\ge3
+\end{cases}.\]
+Мы такую функцию строили. И рассмотрим такие функции
+\[
+  \forall\ \phi\in S(\R^m)\pau \phi_n(x):=\eta\left(\frac xn\right)\phi(x),\ n\in\N.
+\]
+Такие $\phi_n\in\D(\R^m)$. Надо показать, что $\phi_n\te \phi$ в $S(\R^m)$. Имеем по формуле Ньютона"--~Лейбница
+\[
+  \dl^\a\big(\phi_n(x)-\phi(x)\big) = \dl^\a\left(\left(\eta\left(\frac nx\right)-1\right)\phi(x)\right) = 
+  \sum\limits_{\gamma\le \alpha}c_{\a\gamma}\dl^\gamma\left(\eta(\left(\frac xn\right)-1\right)\dl^{\a-\gamma}\phi(x),\ c_{\a\gamma}\in\N.
+\]
+Замеим, что
+\[
+  \forall\ \|x\|\le n\pau \dl^\g\left(\eta\left(\frac xn\right)-1\right)=0.
+\]
+Поскольку функция является быстро убывающей, имеем
+\[
+  \forall\ \e>0\pau \exists\ N\in\N\colon \forall\ \|x\|\ge N,\ \forall\ \g<\a\pau 
+\big|x^\b\dl^{\a-\g}\phi(x)\big|<\e.
+\]
+Отсюда $\Big|x^\b\dl^\a\big(\phi_n(x)-\phi(x)\big)\Big|<c\,\e$. В качестве константы надо взять
+\[
+  c:= \sum\limits_{\g\le \a}c_{\a\,\g}\max\big|\dl^\g\eta(x)\big|.
+\]
+Таким образом теорема доказана.
+\end{Proof}
+
+\begin{The}
+  Отображение $S'(\R^m)\to \D'(\R^m)$ является непрерывным вложением, то есть
+\[
+  \forall\ f\in S'(\R^m)\pau\exists!\ g=f|_{\D(\R^m)}\in \D'(\R^m).
+\]
+\end{The}
+\begin{Proof}
+Это очень просто. Если $\phi_n\te \phi$ в $\D(\R^m)$, то есть $\phi_n\te\phi$ в $S(\R^m)$. Поскольку все $\phi_n$ имеют компактный носитель, то конечно все выражения типа 
+\[
+  \Big|x^\b\dl^\a\big(\phi_n(x)-\phi(x)\big)\Big|
+\]
+равномерно стремятся к нулю. Значит, $g\in\D'(\R^m)$.
+
+Пусть $f\in S'(\R^m)$ и $\forall\ \phi\in \D(\R^m)\pau \la f,\phi\ra =0$. Нам нужно доказать, что тогда он нулевой и на $S(\R^m)$. Тогда мы докажем, что ядро этого отображение является нулевым.
+
+Для этого мы берём последовательность функций по лемме
+\[
+ \forall\ \phi \in S(\R^m)\pau\exists\ \phi_n\in\D(\R^m)\colon \phi_n\te \phi\text{ в } S(\R^m).
+\]
+Следовательно, $\forall\ \phi\in S(\R^m)\pau \la f,\phi\ra = \yo n\infty\la f,\phi_n\ra = 0$.
+\end{Proof}
+
+Перечислим те же действия, что определяли для обобщённых функций.
+\begin{enumerate}
+\item Пусть $f\in S'(\R^m)$, обозначим оператор сдвига $\tau_a \phi(x):=\phi(x-a)$, и определим двиг для обобщённой функции $f$:
+\[
+  \forall\ \phi\in S(\R^m)\pau \la \tau_af,\phi\ra:=\la f,\tau_{-a}\phi\ra.
+\]
+Так как оператор $\tau_a$ непрерывный в $S(\R^m)$, то $\tau_a f\in S'(\R^m)$.
+
+Пусть $\l\ne0$, $\rho_\l\phi(x):=\phi(\l x)$. Тогда
+\[
+  \forall\ \phi\in S(\R^m)\pau \la \rho_\l f,\phi\ra: = |\l|^{-m}\la f,\rho_{\l^-1}\phi\ra.
+\]
+\item Пусть $f\in S'(\R^m)$, $A\colon \R^m\to\R^m$, такой оператор, что $\det A\ne 0$. Обозначим $T_A\phi(x):=\phi(A\,x)$. Тогда
+\[
+  \forall\ \phi\in S(\R^m)\pau \la T_Af,\phi\ra =
+   |\det A|^{-1}\la f,T_{A^{-1}}\phi\ra.
+\]
+\item И дифференцирование. Пусть $f\in S'(\R^m)$. Тогда 
+\[\forall\ \phi\in S(\R^m)\pau
+\la \dl^\a f,\phi\ra = (-1)^{|\a|}\la f,\dl^\a\phi\ra.\]
+\end{enumerate}
+
+\subsection{Преобразование Фурье}
+\begin{Def}
+Пусть $f\in \L_1(\R^m)$. Обозначим $\varkappa = \frac1{\sqrt{2\pi}}$, $x = (x_1,\dots,x_m)$, $y = (y_1,\dots,y_m)$, $\la x,y\ra \hm= \RY k1m x_k y_k$.
+
+Тогда прямое преобразование Фурье определяется по формуле
+\[
+  \hat f(x):=\varkappa^m\Gint{\R^m}f(y)e^{-i\la x,y\ra}\,dy.
+\]
+Обратное преобразование Фурье (это не обратный оператор в $\L_1$)
+\[
+  \Til f(x) = \varkappa^m\Gint{\R^m}f(y)e^{i\la x,y\ra}\,dy.
+\]
+\[
+ \mathcal F(f) := \hat f;\quad \mathcal F^{-1}(f) = \Til f.
+\]
+\end{Def}
+
+Пример. $e^{-\frac{\|x\|^2}2} = \prod\limits_{k=1}^me^{-\frac{x_k^2}2}$. Давайте найдём преобразование Фурье. Достаточно найти для одномерной функции. Дальше перемножим.
+\[
+  \hat\e^{-\frac{x^2}2} = \varkappa\Gint\R e^{-\frac{y^2}2-ixy}\,dy = 
+  e^{-\frac {x^2}2}\varkappa\Gint\R e^{-\frac{(y+i\,x)^2}2}\,dy.
+\]
+По теореме Коши из комплексного анализа.
+\[\hat\e^{-\frac{x^2}2} = 
+  e^{-\frac{x^2}2}\varkappa\Gint\R e^{-\frac{y^2}2}\,dy = e^{-\frac{x^2}2}.
+\]
+И для произведения это тоже будет верно, то есть 
+$e^{-\frac{\|x\|^2}2}=e^{-\frac{\|x\|^2}2}$.
+\begin{Lem}
+  Оператор $\mathcal F\colon S(\R^m)\to S(\R^m)$ непрерывный и биективный.
+\end{Lem}
+\begin{Proof}
+  Пусть $\phi\in S(\R^m)$. Тогда 
+\[
+\dl^\a\hat\phi(x) = \varkappa^m\Gint{\R^m}\phi(y)(-i\,y)^\a e^{-i\la x,y\ra}\,dy.
+\]
+А теперь наоборот. В данном случае нужно интегрировать по частям. (поправить знак крышки)
+\[
+  \hat{\dl^\a\phi}(x) = \varkappa^m(i\,x)\Gint{\R^m}\phi(y)\,e^{-i\,\la x,y\ra}\,dy.
+\]
+Совместим эти формулы, получим
+\[
+  x^\b\dl^\a\hat\phi(x) = (-i)^{|\a+\b|}\mathcal F\Big(\dl^\b\big(y^\a\phi(y)\big)\Big).
+\]
+Из этой формулы мы сделаем оценочку.
+\[
+  \sup\limits_{\l\in\R^m}\big|x^\b\dl^\a\hat\phi(x)\big|\le\varkappa^m\Gint{\R^m}\Big|\dl^\b\big(y^\a\phi(y)\big)\Big|\,dy\le
+  (\varkappa\,\pi)^m\sup\limits_{x\in\R^m} \Big|\big(1+\|y\|^2\big)^m\Big|\Big|\dl^\b\big(y^\a\phi(y)\big)\Big|.
+\]
+Для оценки я использую такой инеграл $\Gint\R\frac{dx_k}{1+x_k^2} = \pi$ для $k=1,2\dots$, а $|x_k|^2\le \|x\|^2$.
+
+Отсюда получаем, что $\hat\phi\in S(\R^m)$ и если $\phi\te\phi$ в $S(\R^m$, то $\hat\phi_n\te \hat\phi$ в $S(\R^m)$. А это означает, что оператор преобразования Фурье действует из $S(\R^m)$ в $S(\R^m)$ и то, что он непрерывный.
+
+Осталось доказать биекцию. Это "--- самая трудная часть доказательства. Докажем, что $\Til{\hat\phi} = \phi(x)$ и $\hat{\Til \phi} = \phi(x)$, то есть $\mathcal F\cdot\mathcal F^{-1} = \mathcal F^{-1}\mathcal F = I$. Докажем первую, вторая доказывается аналогично. Это такое не очень приятное занятие.
+\[
+  \Til{\hat\phi} = \varkappa^m\Gint{\R^m}\hat\phi(y)\,e^{i\la x,y\ra}\,dy = 
+  \varkappa^m\yo\e{+0}\Gint{\R^m} \hat\phi(y) e^{i\la x,y\ra - \e^2\frac{\|y\|^2}2}\,dy.
+\]
+Поскольку $\hat\phi\in S(\R^m)$, то $\hat\phi$ убывает быстро и интеграл существует, можно оценить подынтегральное выражение, значит, можно перейти к пределу под знаком интеграла. Далее
+\begin{multline*}
+\Til{\hat\phi} = \varkappa^{2m}\yo\e{+0}\Gint{\R^m}\phi(z)
+\Gint{\R^m}e^{-i\la z-x,y\ra - \e^2\frac{\|y\|^2}2}\,dy\,dz = \\
+\cmt{делаем замену переменных}\\
+=\varkappa^{2\,m}\yo{\e}{+0}\frac1{\e^m}\Gint{\R^m}\phi(z)\Gint{\R^m} e^{-i\left\la \frac{z-x}\e,y\right\ra - \frac{\|y\|^2}2}\,dy\,dz = \\
+\cmt{Делаем преобразование Фурье, одна $\varkappa$ пропадёт}\\
+=\varkappa^m\yo{e}{+0}\frac1{\e^m}\Gint{\R^m}\phi(z) e^{-\frac{\left\|\frac{z-x}\e\right\|^2}2}\,dz = 
+\varkappa^m\yo\e{+0}\Gint{\R^m}\phi(x+\e\,z) e^{-\frac{\|z\|^2}2}\,dz = \phi(x).
+\end{multline*}
+\end{Proof}
+Теперь можем определить преобразование Фурье для обобщённых функций медленного роста.
+\begin{Def}
+  Пусть $f\in S'(\R^m)$. Мы определяем функционал
+\[
+  \forall\ \phi\in S(\R^m)\pau \la\hat f,\phi\ra:=\la f,\Til \phi\ra;\quad \la\Til f,\phi\ra:= \la f,\hat\phi\ra.
+\]
+То есть $\mathcal F$ и $\mathcal F^{-1}\colon S(\R^m)\to S(\R^m)$ непрерывные и $\hat f,\Til f\in S'(\R^m)$.
+\end{Def}
+Будем обозначать $\mathcal F(f) = \hat f$ и $\mathcal F^{-1}(f)=\Til f$ прямое и обратное преобразования Фурье в $S'(\R^m)$.
+\begin{The}
+  $\mathcal F\colon S'(\R^m)\to S'(\R^m)$ является линейным непрерывным и биективным оператором.
+\end{The}
+Ну и соответственно $\mathcal F^{-1}$ будет тоже линейным непрерывным и биективным.
+\begin{Proof}
+  Линейность очевидная по определени. Нужно проверить его непрерывность. Если $f_n\in S'(\R^m)$ и $f_n\te f$ в $S'(\R^m)$, то $\la f_n,\hat\phi\ra\te \la f,\hat\phi\ra$. Следовательно, $\mathcal F$ непрерывный.
+
+Теперь проверим биектривность. Она вытекает из таких формул
+\[
+  \la \Til{\hat f},\phi\ra =
+  \la f,\hat{\Til\phi}\ra = 
+  \la f,\phi\ra;\quad
+  \la \hat{\Til f},\phi\ra =
+  \la f,\Til{\hat \phi}\ra = \la f,\phi\ra.
+\]
+Значит, это биективный оператор и теорема доказана.
+\end{Proof}
+
+Приведём некоторые формулы для преобразования Фурье и примерчик рассмотрим.
+\begin{Ut} Формула сдвига (на самом деле будут две формулы). Если $f\in S'(\R^m)$ и $\tau_a\phi(x) = \phi(x-a)$, то 
+\[
+  \mathcal F(\tau_a f) = e^{-i\la a,x\ra} \mathcal Ff;\quad
+  \tau_a(\mathcal Ff) = \mathcal F\left(e^{i\la a,y\ra}f(y)\right).
+\]
+\end{Ut}
+\begin{Proof}
+Если $f=\phi\in S(\R^n)$, эти формулы легко проверяются по определению преобразования Фурье.
+
+Зная, что эти формулы справедливы для функций из $S(\R^n)$, докажем для обобщённых.
+\[
+  \big\la\mathcal F(\tau_af),\phi\big\ra = 
+  \big\la f,\tau_{-a}\mathcal F(\phi)\big\ra = 
+  \Big\la f,\mathcal F\big(e^{-i\,\la a,y\ra}\phi(y)\big)\Big\ra =
+  \big\la e^{-i\,\la a,y\ra}\mathcal F(f),\phi\big\ra.
+\]
+\end{Proof}
+\begin{Ut}
+  Формула замены переменных. Пусть $f\in S'(\R^m)$, $A\colon \R^m\to\R^m\colon \det A\ne0$, $\tau_A\phi(x) \hm= \phi(A\,x)$. Будем обозначать через $A'$ сопряжённый оператор (с транспонированной матрицей). Тогда
+\[
+  \mathcal F( T_Af) = |\det A'|^{-1} T_{A^{-1}}f,\quad
+  T_A\mathcal(f) = |\det A'|^{-1}\mathcal F(T_{A^{-1}}f).
+\]
+\end{Ut}
+Доказывается так же. Сначала проверяется для $f=\phi\in S(\R^m)$, потом из этого для обобщённых.
+\begin{Ut}
+  Формула дифференцирования. Пусть $f\in S'(\R^m)$, $\a\in\Z_+^m$. Тогда
+\[
+  \dl^a (\mathcal F f) = \mathcal F\big( (-i\,y)^\a f(y)\big),\quad
+  \mathcal F(\dl^\a f) = (i\,x)^\a \mathcal F f.
+\]
+\end{Ut}
+Опять же техника уже разроботана. Используем только определение, доказываем для $f=\phi\in S(\R^m)$. Потом перетаскиваем на обобщённые.
+
+Рассмотрим пример. Посчитаем преобразование Фурье для производной от $\delta$-функции. Пусть $f(x) = \dl^\a\delta(x-a)$.
+\begin{multline*}
+  \la \mathcal F f,\phi\ra = (-1)^{|\a|}\big\la\delta(x-a),\dl^\a\mathcal F(\phi)\big\ra = 
+  (-1)^{|\a|}\dl^\a\mathcal F\phi(a)=\\
+\cmt{запишем формулу для преобразования Фурье и производные сразу напишем}\\
+  = (-1)^{|\a|}\varkappa^m\Gint{\R^m}\phi(y) (-i\,y)^\a\,e^{-i\la a,y\ra}\,dy.
+\end{multline*}
+Значит,
+\[
+  \mathcal F\big(\dl^\a\delta(x-a)\big) = 
+  \varkappa^m (i\,y)^\a e^{-i\la a,y\ra};\quad
+  \mathcal F^{-1}\left( y^\a e^{-i\la a,y\ra}\right) = 
+  \varkappa^{-m}(-i)^{|\a|}\dl^\a\delta(x-a).
+\]
