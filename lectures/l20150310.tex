@@ -1,0 +1,233 @@
+\section{Преобразование Фурье в пространствах Лебега первого и второго порядков}
+Я напомню, что $x=(x_1,\dots,x_m)$, $y=(y_1,\dots,y_m)\in\R^m$, $\la x,y\ra = \RY k1m x_k\,y_k$. Для  $f\in\L_1(\R^m)$ преобразование Фурье
+\[
+  \hat f(x) :=\k^m\Gint{\R^m}f(y)\,e^{-\la x,y\ra}\,dy = \Fu(f);\qquad
+  \Til f(x) :=\k^m\Gint{\R^m}f(y)\,e^{\la x,y\ra}\,dy = \Fu^{-1}(f).
+\]
+Обычно $\k=\frac1{\sqrt{2\pi}}$. Тогда $\Til f(x) = \hat f(-x)$. 
+
+\begin{Lem}[Римана"--~Лебега]\label{RimLeb}
+  Если $f\in\L_1(\R^m)$, то
+\begin{roItems}
+\item $\hat f\in C(\R^m)$;
+\item $\|\hat f\|_C:=\sup\limits_{x\in\R^m}\big|\hat f(x)\big|\le\k^m\|f\|_{\L_1}$;
+\item $\yo{\|x\|}\infty\hat f(x)=0$.
+\end{roItems}
+\end{Lem}
+Здесь норма обычная $\|x\| = \sqrt{\RY k1mx_k^2}$.
+
+\begin{Proof}
+  Первое свойство
+\begin{multline*}
+  \big|\hat f(x-a)-\hat f(x)\big| = \big|\tau_a\hat f(x)-\hat f(x)\big| =
+  \k^m\bigg|\Gint{\R^m}f(y)\big(e^{-\la x-a,y\ra} - e^{-i\la x,y\ra}\,dy\bigg|\le\\ \le
+  \k^m\Gint{\R^m}\big|f(y)\big|\big| e^{-i\la x,y\ra}-1\big|\,dy = 
+  \k^m\Gint{\R^m}\big|f(y)\big| 2\left|\sin\frac{\la a,y\ra}2\right|\,dy\xrightarrow{a\to0}0.
+\end{multline*}
+Значит, $f$ равномерно непрерывна.
+
+Второе
+\[
+  \|\hat f\|_C\le \k^m\Gint{\R^m}\big|f(y)\big|dy = \k^m\|f\|_{\L_1}.
+\]
+
+Третье посложнее. Положим $a:=\frac{\pi\,x}{\la x,x\ra}$ для $x\ne0$. Тогда $\hat{\tau_a f} = -\hat f$. Следовательно
+\[
+  \big|\hat f(x)\big| = \frac12\big|\hat f(x)-\hat{\tau_af}(x)\big| = 
+ \frac{\k^m}2\bigg|\Gint{\R^m}\big(f(y)-\tau_a(t)\big)e^{-i\la x,y\ra}\,dy\bigg|\le
+\frac{\k^m}2 \|f-\tau_af\|_{\L_1}\le
+\]
+Теперь применяем применяем неравенство треугольника для нормы
+\[
+  \le\frac{\k^m}2\big(\|f-g\|_{\L_1}+\|g-\tau_ag\|_{\L_1}+\|\tau_ag-\tau_af\|_{\L_1}.
+\]
+Функцию $g$ выбираем так, чтобы $\|f-g\|_{\L_1}<\frac{2\,\e}{2\k m}$, где $\e>0$ и $g\in C_0(\R^m)$ (непрерывная функция с компактным носителем). Если сдвинем, получим то же неравенство
+\[
+ \|\tau_a f-\tau_ag\|_{\L_1}<\frac{2\,\e}{3\k m}.
+\]
+В силу непрерывности на компактном носителе, $g$ равномерно непрерывна. Существует $\delta>0\colon \|a\|<\delta\imp \|g-\tau_ag\|_{\L_1}<\frac{2\,\e}{3\k m}$ (по норме в $C$ это верно, по норме в $\L_1$ тем более).
+
+Тогда для $\|a\|<\e$ имеем $\big|\hat f(x)\big|<\e$. А $\|a\| = \frac\pi{\|x\|}<\delta$. Значит, $\|x\|>\frac\pi\delta$. То есть предел в есконечности равен нулю.
+\end{Proof}
+
+Докажем теперь условие Дини, но в одномерном случае. В отличие от преобразования Фурье обобщённой функции, функция может получиться не из $\L_1$. Но можно на исходную функцию наложить ограничение.
+\begin{The}[условие обращения Дини]
+  Пусть $f\in\L_1(\R)$ и при некотором $\delta>0$ и некотором $x$ имеем $\int\limits_{-\delta}^{\delta}\left|\frac{f(x+t)-f(x)}t<\right|\infty$. Тогда утверждается, что 
+\[
+  \yo n\infty\int\limits_{-n}^n\hat f(y)e^{-i\,x\,y}\,dy = f(x).
+\]
+\end{The}
+\begin{Proof}
+ Запишем интеграл и применим теорему Фубини 
+\[
+  \k\int\limits_{-n}^n\hat f(y)\,e^{-i\,x\,y}\,dy =
+  \frac1\pi\Gint{\R}f(z)\bigg( \int\limits_{-n}^n e^{-i\,(x-z)\,y}\,dy\bigg)\,dz=
+  \frac1\pi\Gint{\R}f(z)\frac{\sin n(x-z)}{(x-z)}\,dz.
+\]
+Представим подынтегральную функцию через экспоненту по формуле Эйлера и используем, что $\Gint{\R}\frac{\sin nt}t\,dt=\pi$.
+\begin{multline*}
+  \frac1\pi\Gint{\R}f(z)\frac{\sin n(x-z)}{(x-z)}\,dz - f(x)=
+  \frac1\pi\Gint{\R}\frac{f(x-t)-f(x)}t\sin nt\,dt = \\ =
+  \underbrace{\frac1\pi\Gint{|t|\le\delta}\frac{f(x-t)-f(x)}t\sin nt\,dt}_{\te0\ \text{(интегрируема)}}+ 
+  \underbrace{\frac1\pi\Gint{|t|>\delta}\frac{f(x-t)}t\sin nt\,dt}_{\to0\ (\ref{RimLeb})} +
+  \underbrace{\Gint{|t|>\delta n}f(x) \frac{\sin nt}t\,dt}_{\te0}.
+\end{multline*}
+\end{Proof}
+
+\begin{Ut}[Формула умножения] 
+ Пусть $f,g\in\L_1(\R^m)$. Тогда $\Gint{\R^m}\hat f(x) g(x)\,dx = \Gint{\R^n}f(x)\hat g(x)\,dx$.
+\end{Ut}
+\begin{Proof}
+  $\Gint{\R^m}\bigg(\Gint{\R^m}f(y)e^{-i\la x,y\ra}\,dy\bigg)g(x)\,dx = 
+  \Gint{\R^m} f(y)\bigg(\Gint{\R^m} g(x)e^{-i\la x,y\ra}\,dx\bigg)\,dy$.
+\end{Proof}
+\begin{Ut}[Формула обращения]
+  Пусть $f,\hat f\in \L_1(\R^m)$. Тогда
+\[
+  \Til{\hat f}(x) = \Til{\hat f}(x) = f(x)\text{ п.\,в.} x\in \R^m
+\]
+\end{Ut}
+\begin{Proof}
+Имеем
+\[
+  \forall\ \phi \in S(\R^m)\pau \Gint{\R^m}\Til {\hat f}(x)\phi(x)\,dx = 
+  \Gint{\R^m} f(x)\hat{\Til\phi }(x)\,dx = 
+  \Gint{\R^m} f(x)\,\phi(x)\,dx.
+\]
+Значит, $\Til {\hat f}(x)-f(x)=0$ почти всюду.
+\end{Proof}
+\begin{Ut}[Формулы дифференцирования]
+  Пусть $f\in\L_1(\R^m)$, $x^\a f(x)\in\L_1(\R^m)$. Тогда $\dl^\a\hat f(x) = \hat{(-i\,y)^\a f}(y)$.
+
+Если $f\in W_1^k(\R^m)$, то $\forall\ |\a|\le k,\ \forall\ x\in\R^m\pau 
+  \hat{\dl^\a f}(x) = (ix)^\a\hat f(x)$.
+\end{Ut}
+
+Раз мы уже показали, что данное преобразование совпадает с обобщённым, то всё уже доказано. Просто равенства выполнены почти всюду, но для элементов из $\L_1$ это неважно.
+
+\begin{Ut}
+  Формула свёртки. Пусть $f,g\in\L_1(\R^m)$. Тогда
+\[
+  f\star g(x) = \Gint{\R^m} f(y)g(x-y)\,dy\in\L_1(\R^m);\quad
+  \hat{f\star g}(x) = \k^{-m} \hat f(x)\cdot \hat g(x).
+\]
+\end{Ut}
+\begin{Proof}
+ Рассмотрим невырожденное линейное преобразование (ведь существует обратное) $(x,y)\to(y,x-y)\colon \R^{2m}\to\R^{2m}$. Так как преобразование линейно, оно переводит измеримые в измеримые. Так как $f(x)\cdot g(y)$  измерима, то $f(y)g(x-y)$ тоже измерима в $\R^{2m}$. Более того, $f(y)g(x-y)\in\L_1(\R^{2m})$. И выполняются неравенства
+\[
+  \|f\star g\|_{\L_1}\le \Gint{\R^m}\,dx\bigg(\Gint{\R^m}\big|f(y)g(x-y)\big|\,dy\bigg) = \|f\|_{\L_1}\|g\|_{\L_1}.
+\]
+Кроме того
+\begin{multline*}
+  \k^m\Gint{\R^m}\bigg(\Gint{\R^m}f(z)g(y-z)\,dz\bigg)e^{-i\la x,y\ra}\,dy=\\=
+  \k^m\Gint{\R^m} f(z)\bigg(\Gint{\R^m}g(y-z)\,e^{-i\la x,y-z\ra}\,dy\bigg) e^{-i\la x,y\ra}\,dz = \{ y\to y-z\} =\k^{-m}\hat f(x)\hat g(x).
+\end{multline*}
+\end{Proof}
+\subsection{Преобразование Фурье в $\L_2$}
+\begin{Def}
+ Обозначим $\Delta_n:=\Big\{ x\in\R^m\Bigm|\max\limits_{1\le k\le m}|x_k|<n\Big\}$. Пусть $f\in\L_2(\R)$. Тогда определим преобразование Фурье
+\[
+  \hat f(x):=\yo n\infty \Gint{\Delta_n} f(y) e^{-i\la x,y\ra}\,dy.
+\]
+Здесь предел берётся в $\L_2(\R^m)$.
+\end{Def}
+Как и в признаке Дини приходится брать предел. Обозначим $f_n(x) = f(x)\chi_{\Delta_n}(x)$. Тогда $f_n\in\L_1(\R^m)$ для каждого $n\in\N$. Тогда считаем по определению $\Til f(x) := \hat f(-x)$.
+
+Докажем, что предел существует и оператор сохраняет норму.
+\begin{The}[Планшереля]
+  Если $f\in\L_2(\R^m)$, то $\exists\ \hat f = \lim\limits{n\to\infty} f_n$ в $\L_2(\R^m)$ и $\|\hat f\|_{\L_2} = \|f\|_{\L_2}$.
+\end{The}
+\begin{Proof}
+ Легко проверить, что если возьмём функцию $ \phi\in S(\R^m)$, то 
+\[
+  \|\phi\|_{\L_2}^2 = \Gint{\R^m}\phi(x)\ol{\phi(x)}\,dx = 
+  \Gint{\R^m}\Til{\hat\phi}(x)\ol{\phi(x)}\,dx = 
+  \Gint{\R^m}\hat \phi(x)\ol{\hat\phi(x)}\,dx = \|\hat\phi\|_{\L_2}^2.
+\]
+Таким образом для функций из $S$ мы доказали.
+
+Пусть $f(x)\in\L_2(\R^m)$ и $f(x)=0$ для всех $x\in\Delta_r$. Тогда $\exists\ \phi_n\in\D(\Delta_r)\colon \|f-\phi_n\|_{\L_2}\te0$. Мы это доказывали для $\L_p$. Значит, $\{\phi_n\}$ "--- последовательность Коши в $\L_2(\R^m)$. Следовательно и $\{\hat\phi_n\}$ "--- последовательность Коши в $\L_2(\R^m)$. Сходятся в $\L_2$, значит, сходятся в $\L_1$, а $\phi_n,f\in\L_1(\Delta_r)$ и $\hat\phi_n\rsh n\hat f$. Значит, $\hat\phi_n\te \hat f$ в $\L_2(\R^m)$. Значит,
+\[
+  \|f\|_{\L_2} = \yo n\infty\|\phi_n\|_{\L_2} = \yo n\infty \|\hat\phi_n\| = \|\hat f\|_{\L_2}.
+\]
+
+Докажем теперь в общем случае. Пусть $f\in\L_2(\R^m)$. Тогда $f_n = f\cdot\chi_{\Delta_n}\te f$ в $\L_2(\R^m)$. Значит, $\{f_n\}$ "--- последовательность Коши в $\L_2$. Отсюда и преобразование Фурье тоже является последовательностью Коши в силу последнего выключного равенства. Отсюда существует предел в $\L_2$, то есть$\exists\ \hat f=\yo n\infty \hat f_n$ в $\L_2(\R^m)$. И осталось написать равенство норм.
+\end{Proof}
+
+Давайте сформулируем теперь свойства преобразования Фурье для функций из $\L_2$.
+\begin{Ut}
+  Формула умножения. $f,g\in\L_2(\R^m)$. Тогда
+\[
+  \Gint{\R^m}\hat f(x)g(x)\,dx = \Gint{\R^m}f(x)\hat g(x)\,dx.
+\]
+\end{Ut}
+Эта формула получается из теоремы Планшереля и непрерывности скалярного произведения.
+\begin{Ut}
+  Формула обращения. Если $f\in\L_2(\R^m)$, то $\Til {\hat f}(x) = \hat {\Til f}(x) = f(x)$ почти всюду на $\R^m$.
+\end{Ut}
+Доказывается так же, как и в $\L_1$.
+\begin{Ut}
+Формула свёртки. Пусть $f\in\L_1(\R^m)$, $g\in\L_2(\R^m)$. Тогда
+\[
+  f\star g\in\L_2(\R^m),\quad \hat{f\star g}(x) = \k^{-m}\hat f(x)\hat g(x) \text{ почти всюду на }\R^m.
+\]
+\end{Ut}
+\begin{Proof}
+  Интегрируемость в квадрате вытекает и обобщённого неравенства Миньковского
+\[
+  \|f\star g\|_{\L_2}\le \|f\|{\L_1}\cdot \|g\|_{\L_2}.
+\]
+Применя теорему Плашереля, переходя к пределу, получаем формулу.
+\end{Proof}
+
+\subsection{Функции Эрмита}
+Это вот такие функции $h_n(x):=c_n e^{\frac{x^2}2}\left((\DP{ }x\right)^ne^{-x^2}$. Здесь $c_n$ константа. Если произвести дифференцирование
+\[
+  h_n(x) = H_n(x) e^{-\frac{x^2}2},\quad H_n(x) = \RY k0n a_k x^k
+\]
+$H_n(x)$ называются многочленами Эрмита.
+
+\begin{Ut}
+$\big\{h_n(x)\big\}$ ортогональны.
+\end{Ut}
+\begin{Proof}
+  Имеем
+\[
+  \Gint{\R} h_n(x)h_m(x)\,dx = 
+  c_n\Gint{\R} H_n(x)\left(\DP { }x\right)^m e^{-x^2}\,dx =
+  c_n(-1)^m\Gint{\R} e^{-x^2}\left(\DP { }x\right)^m H_n(x)\,dx = 0,\ m>n.
+\]
+Для $n=m$ это равно $c_n^2 2^n n!\sqrt{\pi}$, так как $\Gint{\R}e^{-x^2}\,dx = \sqrt\pi$.
+\end{Proof}
+Значит, для ортонормированной системы берём $c_n = \frac1{\sqrt{2^n n!\sqrt{\pi}}}$.
+
+\begin{Lem}
+  Пусть $a,b>0$, $n\in\Z_+$, функция $\phi$ измерима и удовлетворяет неравенству $0<\big|\phi(x)\big|\le b e^{-a|x|}$. Тогда система функций $\phi_n(x) = x^n\phi(x)$ при $n\in\Z_+$ полна в $\L_2$.
+\end{Lem}
+\begin{Proof}
+Мы из прошлого семестра знаем критерий полноты. Мы им и воспользуемся. Пусть $f\in\L_2(\R)$ и $\forall\ n\in\Z_+\pau f\perp\phi_n$, то есть 
+\[
+ \forall\ n\in\Z_+\pau \Gint{\R}f(x)\phi(x)\,dx = 0.
+\]
+Рассмотрим функцию комплексного переменного $F(z) = \Gint{\R}f(t)\phi(t) e^{-i\,t\,z}\,dt$, где $z = x+i\,y\in\C\colon |y|<a$. Можно дифференцировать под знаком интеграла, значит, функция получится голоморфной в $|\Im z|<a$. Заметим, что производные в нуле равны нулю, то есть
+\[
+  F^{(n)}(0) = \Gint{\R}f(t)(-i\,t)^n\phi(t)\,dt = 0
+\]
+в силу условия ортогональности. Значит, по теореме об аналитическом продолжении функция будет тождественным нулём в полосе $|\Im z|<a$. В частности, она будет равна нулю для всех $x\in\R$. А тогда это с точностью до константы преобразование Фурье ноль, но сущесвует обратное. И обратное обязано быть нулём почти всюду. Значит, $f(t)\phi(t)=0$ почти всюду. Отсюда $f(t)=0$ почти всюду.
+\end{Proof}
+
+\begin{The}
+  Функции Эрмита $\{h_n\}$ образуют полную ортонормированную систему, такую, что $\forall\ n\in\Z_+\pau \hat h_n(x) = (-i)^n h_n(x)$. То есть они являются собственными функцими функциями преобразования Фурье и образуют полную ортонормированную систему.
+\end{The}
+\begin{Proof}
+$\{h_n\}$ является ортогонализацией Грама"--~Шмидта системы $x^n e^{-\frac{x^2}2}$. Осталось доказать, что функции Эрмита являются собственными.
+\begin{multline*}
+  \hat h_n(x) = \k\Gint{\R} h_n(y) e^{-i\,x\,y}\,dy = 
+  \k c_n\Gint{\R}e^{\frac{y^2}2 - i\,x\,y}\left(\DP { }y\right)^ne^{-y^2}\,dy =\\
+= \k c_n e^{\frac{x^2}2}\Gint{\R} e^{\frac{(y-i\,x)^2}2}\left(\DP{ }y\right)^ne^{-y^2}\,dy = % интегрируем по частям
+  \k c_n(-1)^ne^{\frac{x^2}2}\Gint{\R} e^{-y^2}\left(\DP{ }y\right)^ne^{\frac{(y-i\,x)^2}2}\,dy = \\
+ = \k c_n(-i)^ne^{\frac{x^2}2}\left(\DP{ }x\right)^n\Gint{\R}e^{-\frac{y^2}2 - i\,x\,y - \frac{x^2}2}\,dy = 
+\cmt{Мы доказывали, что $\hat{e^{-\frac{x^2}2}} = e^{-\frac{x^2}2}$}\\
+= c_n(-i)^n e^{\frac{x^2}2}\left(\DP{ }x\right)^ne^{-x} = (-i)^n h_n(x).
+\end{multline*}
+\end{Proof}
