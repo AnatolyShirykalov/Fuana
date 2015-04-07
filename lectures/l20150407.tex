@@ -1,0 +1,311 @@
+\section{Спектр ограниченного оператора}
+Теория ограниченных операторов очень большая, а неограниченных вообще "--- необозримая.
+
+Пусть $E$ "--- банахово пространство над $\C$.  Обозначим $\L(E) := \L(E,E)$, $A\in\L(E)$.
+\begin{Def}
+  $\lambda\in \rho(A)$ "--- элемент множества регулярных значений $A$, если $A_\lambda:=\lambda I - A$ обратим и обратный оператор
+\[
+  R_\lambda:=A^{-1}_\lambda
+\]
+называется резольвентой $A$. Естественно резольвена определяется только для $\lambda\in \rho(A)$.
+\end{Def}
+
+\begin{Def}
+  Дополнение множества регулярных значений $\sigma(A) = \C\dd \rho(A)$ называется спектром $A$.
+\end{Def}
+
+Приведём пример необратимого оператора. Пусть $A\colon l_p\to l_p$, где $1\le p\le \infty$ (последовательности, суммируемые в степени $p$). Пусть задан оператор по формуле
+\[
+  (Ax)_n = \lambda_n x_n,\ n=1,2,\dots\quad x = \{x_n\}\in l_p.
+\]
+Можно представить себе бесконечную диагональную матрицу, которая полностью описывает данный оператор. Непосредственно проверяется
+\[
+  \|A\| = \sup\limits_n|\lambda_n|
+\]
+
+Можно проверить, что все $\lambda_n\in\sigma(A)$. А так как у нас $\ker(A_{\lambda_n})\ne0$ и $A_{\lambda_n}$ необратим. Если рассмотрим резольвенту для некоторого $\lambda\ne \lambda_n$.
+\[
+  (R_\lambda x)_n = \frac{x_n}{\lambda-\lambda_n}.
+\]
+Чтобы $\lambda\in \rho(A)$, нужно, чтобы резольвента была ограниченным оператором, то есть $\|R_\lambda\| = \sup\limits_n\frac1{|\lambda-\lambda_n|}<\infty$.
+
+Итак, $\sigma(A) = \ol\{\lambda_n\}$ для данного оператора.
+
+\begin{Def}
+  Пусть $\Omega\subset\C$ "--- открытое множество и задана функция $f\colon \Omega\to E$, принимающая значения в банаховом пространстве $E$. Эта функция называется голоморфной, если
+\[
+  \forall\ z_0\in \Omega\pau \exists\ r>0,\ \exists\ c_n\in E\colon 
+	\forall\ |z-z_0|<r\pau f(z) = \rY n0 (z-z_0)^n c_n.
+\]
+\end{Def}
+То есть функция представляется в виде сходящегося по норме ряда. Обычно в комплексном анализе коэффициенты комплексные и область определения является областью, а не произвольным открытым множеством. Мы же обобщаем.
+
+Имеет место формула Коши"--~Адамара.
+\[
+  \frac1r:= \varlimsup\limits_{n\to\infty} \sqrt[n]{\|x_n\|}.
+\]
+Доказывать не буду. Всё аналогично случаю комплексных коэффициентов.
+
+Радиус сходимости можно вычислить как расстояние от точки до границы плохого множества.
+
+
+\begin{Lem}
+ Если $\|A\|<1$ и $B = I-A$, то $B^{-1} = \rY n0 A^n$, где $A^n = \underbrace{A\cdot A\cdots A}_{n}$.
+\end{Lem}
+Вот такая простая лемма.
+\begin{Proof}
+  Нужно доказать, что ряд сходится и его сумма является обратной к $B$. Покажем, что частичные суммы образуют последовательность Коши
+\[
+  c_n = \RY k0n A^n,\pau \|A\|=a<1.
+\]
+Тогда
+\[
+  \|c_m-c_n\| = \bigg\|\RY k{n+1}m A^k\bigg\|\le \RY k{n+1}m\|A^k\|\le
+  \RY k{n+1}m\|A\|^k<\frac{a^{n+1}}{1-a}\te 0
+\]
+Сумма геометрической прогрессии. Следовательно, существует предел, ведь пространство ограниченных операторов банахово, то есть $\exists\ c = \lim c_n$ в $\L(E)$.
+
+Осталось показать, что сумма есть обратный оператор. Имеем
+\[
+  BC = \yo n\infty Bc_n = \RY k0n(A^k-A^{k+1})=
+  \lim\limits_{n\to\infty} (I-A^{n+1}) = I,
+\]
+так как $\lim A^{n+1}$, поскольку $\|A\|<1$. Здесь $I$ тождественный оператор. Аналогично $CB = I$. Значит, $C = B^{-1}$.
+\end{Proof}
+
+\begin{The}[о резольвенте]
+  Если $A\in\L(E)$, то $\rho(A)\subset \C$ открыто и для $\lambda\in\rho(A)$ резольвента $R_\lambda$ голоморфна $\|R_\lambda\|\ge\frac1{d_\lambda}$, где
+$ d_\lambda = \inf\limits_{z\in \sigma(A)}|\lambda-z|$ "--- расстояние от точки $\lambda$ до спектра.
+\end{The}
+\begin{Proof}
+  Пусть $z\in \C\colon |\lambda-z|<\|R_\lambda\|^{-1}$, где
+  $\lambda\in\rho(A)$. Покажем, что тогда $z$ тоже регулярное значение, то есть что множество регулярных значений открыто. Запишем
+  \[
+    A_z = A_\lambda - (\lambda - z) I = A_z\big(I-(\lambda-z)R_\lambda\big).
+  \]
+Теперь по лемме мы обратим этот оператор. Надо взять обратный к правому и умножить на обратный к левому сомножителям соответственно.
+\[
+  R_z = A^{-1}_z = \big(I-(\lambda-z)R_\lambda\big)^{-1} \cdot A^{-1}_\lambda = \rY n1(\lambda-z)^nR_\lambda^{n+1}.
+\]
+Ряд сходится по операторной норме. И это $R_z$ резольвента $A$, если $|\lambda-z|<\|R_\lambda\|^{-1}$.
+
+Осталось доказать неравенство. От противного. Если $\lambda\in\rho(A)$, то $\forall\ z\in \sigma(A)\pau |\lambda-z|\ge \|R_\lambda\|^{-1} $. Если обратить это неравенство, то получится как то, что и требовалось доказать.
+\end{Proof}
+
+\begin{Sl}
+  Если $A\in \L(E)$, то спектр $\sigma(A)$ является непустым, замкнутым и ограниченным множеством.
+\end{Sl}
+В конмплексной плоскости замкнутость с ограниченностью и компактность это одно и то же.
+\begin{Proof}
+ Пусть $|\lambda|>\|A\|$. Тогда резольвенту можно представить в виде ряда Лорана. Применяем лемму
+\[
+  R_\lambda = A_\lambda^{-1}\lambda^{-1}\big(I-A/\lambda\big) = \frac1\lambda \rY n0\frac{\|A\|^n}{\lambda^n} = 
+  \rY n0\frac{\|A\|^n}{\lambda^{n+1}}\te0.
+\]
+Функция является голоморфной в бесконечности.
+
+Отсюда следует, что $\sigma(A)\subset \big\{\lambda\in \C\bigm| |\lambda|\le \|A\|\big\}$.
+
+Осталось доказать, что спектр не пустой. Пусть $f\in\L^*(E)$ и положим $g(\lambda):=f(R_\lambda)$ для $\lambda\in \rho(A)$. Так как $f$ непрерывный линейный функционал, то $g(\lambda)$ голоморфна в $\rho(A)$ и $\big|g(\lambda)\big|\to$ при $\lambda\to\infty$ (в смысле топологии комплексной плоскости, то есть модуль $|\lambda|\to+\infty$).
+
+Если $\rho(A) = \C$, то $g(\lambda)\equiv 0$ по теореме Лиувилля. Так как $f$ произвольный, то по теореме Хана"--~Банаха $R_\lambda=0$. Противоречение.
+\end{Proof}
+
+\subsection{Свойства спектра сопряжённого оператора}
+\begin{Ut}
+  Если $A\in\L(E)$, то $\sigma(A^*) = \sigma(A)$. 
+\end{Ut}
+\begin{Proof}
+В самом деле, берём $A_\lambda = \lambda I - A$. Тогда $A^* = \lambda I - A^*$. Сопряжение и взятие обратного можно менять местами, мы это доказывали (если оператор, конечно, обратим).
+\[
+  \forall\ \lambda\in \rho(A)\pau (
+  A^{-1}_\lambda)^*
+  = 
+  (A^{*}_\lambda)^{-1}.
+\]
+Поэтому $R^*_\lambda = R_\lambda(A^*)$ и $\rho(A) = \rho(A^*)$.
+\end{Proof}
+
+Теперь для гильбертово сопряжённых.
+\begin{Ut}
+  Если $A\in \L(H)$, где $H$ "--- гильбертово пространство, то $\sigma(A') = \ol\sigma(A)$.
+\end{Ut}
+\begin{Proof}
+Для доказательства напишем следующее равенство.
+\[
+  \forall\ x,y\in H\pau 
+   \la A_\lambda x,y\ra = \la \lambda x - A x,y\ra = 
+   \la x,\ol \lambda y - A' y\ra = 
+   \la x,A'_\lambda - y\ra,
+\]
+то есть $(A_\lambda)' = A'_{\ol\lambda}$. Отсюда получаем, что 
+\[
+  (R_\lambda)' = (A^{-1}_\lambda) = 
+  (A'_{\ol\lambda})^{-1} = R'_{\ol\lambda}.
+\]
+И $\ol\rho(A') = \rho(A)$
+\end{Proof}
+
+\begin{Def}
+  Пусть $A\in\L(E)$. Число $\lambda$ называется собственным значеним $A$, если $\exists\ e\ne 0\colon Ae = \lambda e$.
+
+Множество всех собственных значений обозначается $\sigma_p(A) = \big\{\lambda\in\C\bigm| \ker(A_\lambda)\ne0\big\}$ и называется точечным спектром.
+
+Непрерывным спектром называется множество
+\[
+  \sigma_c(A) = \big\{\lambda\in\C\bigm|
+	\ker(A_\lambda)=0,\ 
+	\Im(A_\lambda)\ne E,\ 
+	\ol{\Im(A_\lambda)} = E\big\}
+\]
+
+Остаточным спектром называется множество
+\[
+  \sigma_r(A) = \big\{\lambda\in\C\bigm|
+	\ker(A_\lambda)=0,\ 
+	\ol{\Im(A_\lambda)}\ne E,\big\}.
+\]
+\end{Def}
+
+Легко проверить следующее свойство.
+\begin{Ut}
+  Если $A\in \L(E)$, то $\sigma(A) = \sigma_p(A)\sqcup \sigma_c(A)\sqcup \sigma_r(A)$.
+\end{Ut}
+
+\begin{Ut}
+  Если $A\in\L(E)$, 
+\begin{itemize}
+\item 
+$\sigma_p(A)\subset \sigma_p(A^*)\sqcup \sigma_r(A^*)$;
+\item 
+$\sigma_c(A)\subset \sigma_c(A^*)\sqcup \sigma_r(A^*)$;
+\item $\sigma_r(A)\subset \sigma_p(A^*)$.
+\end{itemize}
+\end{Ut}
+\begin{Proof}
+  Это достаточно простые включения.
+\begin{itemize}
+\item Пусть $\lambda\in \sigma_p(A)$. Тогда $\ker(A_\lambda) = (\Im A^*_\lambda)_perp\ne0$. Поэтому либо ядро $\ker(A^*_\lambda) \ne 0$, либо $\ol{\Im A^*_\lambda}\ne E$. Так что первое включение доказано.
+\item Точно так же проверяется и второе включение. Пусть $\lambda\in \sigma_c(A)$. Воспользуемся равенством из определения непрерывного спектра
+\[
+  \ol{\Im A_\lambda} = E.
+\]
+Поэтому $\ker(A^*_\lambda) = (\Im A_\lambda)^\perp = 0$, так как замыкание всё $E$. Либо $\ol{\Im A^*_\lambda} = E$, либо $\ol{\Im A^*_\lambda} \ne E$. То есть принадежит лио непрерывному спектру, либо остаточному.
+\item Пусть $\lambda\in \sigma_r(A)$. Тогда $\ol{\Im A_\lambda}\ne E$ и $\ker(A^*_\lambda) = (\Im A_\lambda)^\perp \ne0$. Получаем последнее включение.
+\end{itemize}
+\end{Proof}
+
+Следующее свойство сейчас доказывать не будем. Оно аналогично предущим.
+\begin{Ut}
+  Пусть $A\in\L(H)$, где $H$ "--- гильбертово пространство, то 
+\begin{itemize}
+\item $\sigma_p(A)\subset\ol\sigma_p(A')\sqcup(A')$;
+\item $\sigma_r(A)\subset\ol\sigma_p(A')$;
+\item $\sigma_c(A) = \ol\sigma_c(A')$.
+\end{itemize}
+\end{Ut}
+Мы это докажем на последней лекции.
+
+Обсудим ещё одно разбиение спектра.
+\begin{Def}
+  $\lambda\in \C$ называется обобщённым собственным значением $A\in\L(E)$, если
+\[
+  \exists\ \{x_n\}\in E\colon \|x_n\|=1,\ \|A_\lambda x_n\|\te 0.
+\]
+
+Множество обобщённых собственных значений называется  предельным спектром оператора $A$
+\[
+  \sigma_l(A) = \big\{\lambda\in\C\bigm|\inf\limits_{\|x\|=1}\|A_\lambda x\| = 0\big\}.
+\]
+\end{Def}
+
+Докажем, что дополнением к этому спектру является вот такое множество
+\[
+  \sigma_d(A) = \big\{\lambda\in\C\bigm| \ker(A_\lambda) = 0,\ \ol{\Im(A_\lambda)} = \Im A_\lambda\ne E.
+\]
+Это называется дефектным спектром.
+
+\begin{Ut}
+  Пусть $A\in\L(E)$. Тогда $\sigma(A) = \sigma_l(A)\sqcup \sigma_d(A)$.
+\end{Ut}
+\begin{Proof}
+Мы должны доказать, что эти множества являеются спектральными, то есть содержатся в спектре. Пусть $\lambda\in \sigma_l(A)$. Тогда существует такая последовательность $\{x_n\}$, для которой $\|x_n\|=1$ и $\|A\lambda x_n\|\te 0$. Если бы $\lambda\in\rho(A)$, то существовала бы резольвента, то есть
+\[
+  \|x_n\| = \|R_\lambda A_\lambda x_n\|\le 
+  \|R_\lambda\| \|A_\lambda x_n\|\te 0.
+\]
+Соответственно $\lambda\in \sigma(A)$.
+Пусть $\lambda\not\in \sigma_l(A)$. Тогда $\exists\ c>0\colon \|A_\lambda x\|\ge c\|x\|$. Отсюда следует, что ядро $\ker(A_\lambda)=0$.
+
+Докажем, что образ оператор $A_\lambda$ является замкнутым множеством. Пусть $y_n = A_\lambda x_n\te y$. Докажем, что $y\in\Im(A_\lambda)$. Имеем
+\[
+  \|x_m-x_n\|\le \frac1c\|A_\lambda x_n A_\lambda x_m\|\le 
+  \frac1c\|A_\lambda x_n - y\| + \frac1c\|y - A_\lambda x_n\|\xrightarrow{n,m\to+\infty}.
+\]
+Отсюда $\{x_n\}\subset E$ есть последовательность Коши и существует предел $x = \lim x_n$, так как $E$ банахово пространство. И $A_\lambda x = y\in \Im A_\lambda$.
+
+Таким образом $\sigma(A)\dd \sigma_l(A)\subset \sigma_d(A)$. Если $\lambda\in \sigma_d(A)$, $A_\lambda$ будет гомеоморфизмом.
+\end{Proof}
+
+\begin{The}[о границе спектра]
+  Если $A\in\L(E)$, то граница спектра $\dl \sigma(A)$ (это стандартное обозначение) $\subset \sigma_l(A)$.
+\end{The}
+\begin{Proof}
+  Пусть $\lambda\in\dl \sigma(A)$. Тогда существует $\lambda_n\in\rho(A)\colon \lambda_n\to \lambda$. Следовательно, 
+\[
+  d_{\lambda_n} = \inf\limits_{z\in\sigma(A)} |z-\lambda| < |\lambda-\lambda_n|\te0.
+\]
+
+Определим операторы $B_n = \frac{R_{\lambda_n}}{\|R_{\lambda_n}\|}$. Имеем, что $R_{\lambda_n} A_{\lambda_n} = I$. Следовательно, можно записать такое равенство
+\[
+  A_\lambda B_n = (\lambda-\lambda_n) B_n + A_{\lambda_n} B_n = 
+  (\lambda-\lambda_n)B_n + \frac I{\|R_{\lambda_n}\|}.
+\]
+Получили такую формулу, мы её в дальнейшем воспользуемся.
+
+Так как $\|B_n\|=1$, то $\exists\ \|y_n\|=1$, для которых $\|B_ny_n\| = \frac12$. Определим
+\[
+  x_n := \frac{B_ny_n}{\|B_ny_n\|}.
+\]
+
+Теперь воспользуемся нашей формулой и получим то, что нужно.
+\[
+  A_{\lambda}x_n = \frac{A_{\lambda}B_ny_n}{\|B_ny_n\|} = 
+  (\lambda-\lambda_n) x_n + \frac{y_n}{\|R_{\lambda_n}\|\|B_ny_n\|}.
+\]
+Отсюда вытекает, что норма такого элемента оценивается ($\|x_n\|=1$ и $\|R_{\lambda_n}\|\ge\frac1{d_{\lambda_n}}$ по теореме о резольвенте; $\|y_n\|=1$)
+\[
+  \|A_\lambda x_n\|\le |\lambda-\lambda_n| + 2 d_{\lambda_n} \le 3|\lambda-\lambda_n|\te0.
+\]
+Следовательно, $\lambda\in\sigma_l(A)$ и теорема доказана.
+\end{Proof}
+
+Рассмотрим опять наш диагональный оператор, который рассматривали в самом начале $A\colon l_p\to l_p$ для $1\le p\le \infty$. Оператор задаётся формулой
+\[
+  (Ax)n = \lambda_n x_n,\pau x= \{x_n\}\in l_p.
+\]
+Мы знаем его спектр "--- это замыкание точечного спектра. Нужно выяснить структуру спектра, то есть найти непрерывный и остаточный.
+\[
+  \sigma_p(A) = \{\lambda_n\},
+\]
+так как если взять такие последовательности $e_n = \{e_{nk}\}$, где 
+\[
+e_{nk} = \begin{cases}
+  0,&n\ne k;\\
+  1,&n=k,
+\end{cases}
+\]
+то $Ae_n = \lambda_ne_n$.
+
+Пусть $1\le p<\infty$. Известно, что в $l_p$ множество финитных последовательностей (конечное число членов отлично от нуля) всюду плотно. Поэтому образ оператора (пусть $\lambda\in\ol{\{\lambda_n\}}\dd\{\lambda_n\}$) $\Im A_\lambda$ содержит все финитные последовательности.
+\[
+(  A_\lambda x)_n = (\lambda-\lambda_n) x_n.
+\]
+Раз он содержит все финитные последовательности, значит, он всюду плотен в $l_p$. Отсюда $\lambda\in \sigma_c(A)$.
+
+Пусть теперь $p=\infty$. Так как $\lambda\in\ol{\{\lambda_n\}}\dd\{\lambda_n\}$, $\exists\ \{n_k\}\colon \forall\ y=\{y_n\}\in \Im A_\lambda$ и $\lim\limits_{k\to\infty} y_{n_k} = 0$.
+Теперь нужно применять теорему Хана"--~Банаха. Определим функционал на пространстве $c_0$ последовательностей, которые стремятся к нулю
+\[
+  f(y) = \lim\limits_{k\to \infty} y_{n_k}.
+\]
+Он по теореме Хана"--~Банаха имеет непрерывное продолжение на $l_{\infty}$. Значит, $\lambda\in\sigma_r(A)$ю
