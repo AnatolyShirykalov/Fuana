@@ -156,7 +156,7 @@ $\ker B_\lambda = T(\ker A_\lambda)$ и $\Im B_\lambda = I(\Im A_\lambda)$. Та
 \end{Proof}
 
 \begin{Def}
-  Линейный оператор $A\colon E\to F$, где $E,F$ "--- банаховы пространства, называется компактным, если $\forall\ A\ M\subset E$ ограниченного множества образ $A(M)\subset E$ является предкомпактным. 
+  Линейный оператор $A\colon E\to F$, где $E,F$ "--- банаховы пространства, называется компактным, если $\forall\ A\ M\subset E$ ограниченного множества образ $A(M)\subset F$ является предкомпактным. 
 \end{Def}
 Давайте обозначим $\mathcal K(E,F)$ "--- множество всех компакных операторов.
 
@@ -165,7 +165,7 @@ $\ker B_\lambda = T(\ker A_\lambda)$ и $\Im B_\lambda = I(\Im A_\lambda)$. Та
 \end{Ut}
 
 \begin{Ut}
-  $A\in\mathcal K(E,F)\iff A(S)\subset F$ является предкомпактным, где $S = \big\{x\in E\bigm\|x\|\le1\big\}$.
+  $A\in\mathcal K(E,F)\iff A(S)\subset F$ является предкомпактным, где $S = \big\{x\in E\bigm|\|x\|\le1\big\}$.
 \end{Ut}
 Шар разиуса $S_r = r S$. Так что это утверждение очевидно.
 \begin{Ut}
@@ -179,7 +179,7 @@ $\ker B_\lambda = T(\ker A_\lambda)$ и $\Im B_\lambda = I(\Im A_\lambda)$. Та
 \begin{Proof}
 В самом деле. Берём последовательность $\{x_n\}\subset S$ с единичного шара. Существует последовательность индексов $\{n_k\}$, для которой $A_{x_{n_k}} \to y$. Ну и существует ещё одна последовательность $\{n_{k_j}\}$, для которой $B_{x_{n_{k_j}}}\to z$. Таким образом
 \[
-  (A+B)x_{n_{k_j}}\to A x_{n_{k_j}} + B_{x_{n_{k_j}}}\to y + z.
+  (A+B)x_{n_{k_j}}\to A x_{n_{k_j}} + B{x_{n_{k_j}}}\to y + z.
 \]
 И согласно второму свойству, сумма является компактным оператором.
 \end{Proof}
@@ -201,7 +201,7 @@ $\ker B_\lambda = T(\ker A_\lambda)$ и $\Im B_\lambda = I(\Im A_\lambda)$. Та
 \end{Proof}
 
 \begin{Lem}
-  Если $A_n\mathcal K(E,F)$ и $\|A_n-A\|\to 0$ (пространство $\L(E,F)$ является банаховым, поэтому $A$ будет как минимум ограниченным), то $A$ компактный оператор.
+  Если $A_n\in \mathcal K(E,F)$ и $\|A_n-A\|\to 0$ (пространство $\L(E,F)$ является банаховым, поэтому $A$ будет как минимум ограниченным), то $A$ компактный оператор.
 \end{Lem}
 \begin{Proof}
  $\forall\ \e>0\pau \exists\ n\colon \|A_n-A\|<\frac\e2$.
@@ -210,7 +210,7 @@ $\ker B_\lambda = T(\ker A_\lambda)$ и $\Im B_\lambda = I(\Im A_\lambda)$. Та
 \[
   \|y_k-Ax\|\le \|y_k-A_nx\| + \|A_nx - Ax\|.
 \]
-Имеет местро следующее $\forall\ x\in S\pau \exists k\colon \|y_k - A_n x\|<\frac\e2$. Значит
+Имеет местро следующее $\forall\ x\in S\pau \exists\ k\colon \|y_k - A_n x\|<\frac\e2$. Значит
 \[
   \|y_k-Ax\|<\e.
 \]
