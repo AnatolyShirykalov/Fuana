@@ -1,0 +1,37 @@
+\section{Визуализация обобщённых функций с компактным сингулярным носителем}
+
+\begin{Ut}
+Пусть $F\in \mathcal E'(\R)$. Тогда $\supp F \Subset [-A,A]$.
+\end{Ut}
+\begin{Proof}
+  Пусть от противного $\forall\ N>0\pau \exists\ t>n\colon \forall \delta>0 \exists \phi(t)\in C^\infty\colon \supp \phi\subset B(t,\delta)$ и $(F,\phi)\ne0$. Найдём $t_1>1$, найдём $\phi_1(t)$, для которых $\supp\phi_1\subset B(1,1/2)$ и $(F,\phi_1)=1$. Найдём $t_n>n$ и $\phi_n(t)$, для которых $\supp\phi_n\subset B(n,1/2)$ и $(F,\phi_n)=1$. Положим $\phi(t) = \rY n1 \phi_n(t)\in \mathcal E(\R)$. Тогда $(F,\phi)$ не определена.
+\end{Proof}
+
+\begin{Ut}
+Пусть $\supp F\subset [-A,A]$. Тогда прямое и обратное преобразования Фурье от $F$ гладкие.
+\end{Ut}
+\begin{Proof}
+  Докажем для обратного.
+\[
+  \check f (t):= \DP{ }t\big( \check F,\chi_{[-A,t]}\big) = \left(F,e^{-iyt}{\sqrt{2\pi}}\right)
+\]
+по непрерывности функционала $F$. Все производные по непрерывности можно переставлять с действием $F$.
+\end{Proof}
+
+Для функции $F\in\mathcal E'(\R)$ определим приближающую последовательность по формуле
+\[
+  f_n(t) = \widehat{\chi_{[-n,n]}(t) \check f (t)},\quad \check f(t) = \left(F(y),\frac{e^{iyt}}{\sqrt{2\pi}}\right).
+\]
+
+Заметим, что
+\begin{multline*}
+f_n(t) = \widehat{\chi_{[-n,n]}(t) \cdot \left(F(y),\frac{e^{iyt}}{\sqrt{2\pi}}\right)} = 
+  \widehat{\left(F(y),\chi_{[-n,n]}(t)\frac{e^{iyt}}{\sqrt{2\pi}}\right)} = \\
+  = \bigg(F(y),\frac1{2\pi} \int\limits_{-n}^n e^{iys}\cdot e^{-its}\,ds = 
+  = \frac1\pi\bigg( F(y), \frac{\sin\big((y-t)n\big)}{y-t}\bigg).
+\end{multline*}
+
+Кроме того, действие $f_n(t)$, как обобщённой функции на основную $\phi$ описывается формулой
+\[
+  \big(f_n(t),\phi(t)\big) = \frac1\pi \bigg(F, \phi(t)\star \frac{\sin nt}{t}\bigg).
+\]

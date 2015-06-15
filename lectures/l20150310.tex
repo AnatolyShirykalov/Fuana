@@ -20,7 +20,7 @@
   Первое свойство
 \begin{multline*}
   \big|\hat f(x-a)-\hat f(x)\big| = \big|\tau_a\hat f(x)-\hat f(x)\big| =
-  \k^m\bigg|\Gint{\R^m}f(y)\big(e^{-\la x-a,y\ra} - e^{-i\la x,y\ra}\,dy\bigg|\le\\ \le
+  \k^m\bigg|\Gint{\R^m}f(y)\big(e^{-i\la x-a,y\ra} - e^{-i\la x,y\ra}\big)\,dy\bigg|\le\\ \le
   \k^m\Gint{\R^m}\big|f(y)\big|\big| e^{-i\la x,y\ra}-1\big|\,dy = 
   \k^m\Gint{\R^m}\big|f(y)\big| 2\left|\sin\frac{\la a,y\ra}2\right|\,dy\xrightarrow{a\to0}0.
 \end{multline*}
@@ -31,28 +31,28 @@
   \|\hat f\|_C\le \k^m\Gint{\R^m}\big|f(y)\big|dy = \k^m\|f\|_{\L_1}.
 \]
 
-Третье посложнее. Положим $a:=\frac{\pi\,x}{\la x,x\ra}$ для $x\ne0$. Тогда $\hat{\tau_a f} = -\hat f$. Следовательно
+Третье посложнее. Положим $a:=\frac{\pi\,x}{\la x,x\ra}$ для $x\ne0$. Тогда $\widehat{\tau_a f} = -\hat f$. Следовательно
 \[
-  \big|\hat f(x)\big| = \frac12\big|\hat f(x)-\hat{\tau_af}(x)\big| = 
+  \big|\hat f(x)\big| = \frac12\big|\hat f(x)-\widehat{\tau_af}(x)\big| = 
  \frac{\k^m}2\bigg|\Gint{\R^m}\big(f(y)-\tau_a(t)\big)e^{-i\la x,y\ra}\,dy\bigg|\le
 \frac{\k^m}2 \|f-\tau_af\|_{\L_1}\le
 \]
 Теперь применяем применяем неравенство треугольника для нормы
 \[
-  \le\frac{\k^m}2\big(\|f-g\|_{\L_1}+\|g-\tau_ag\|_{\L_1}+\|\tau_ag-\tau_af\|_{\L_1}.
+  \le\frac{\k^m}2\big(\|f-g\|_{\L_1}+\|g-\tau_ag\|_{\L_1}+\|\tau_ag-\tau_af\|_{\L_1}\big).
 \]
-Функцию $g$ выбираем так, чтобы $\|f-g\|_{\L_1}<\frac{2\,\e}{2\k m}$, где $\e>0$ и $g\in C_0(\R^m)$ (непрерывная функция с компактным носителем). Если сдвинем, получим то же неравенство
+Функцию $g$ выбираем так, чтобы $\|f-g\|_{\L_1}<\frac{2\,\e}{3\k^m}$, где $\e>0$ и $g\in C_0(\R^m)$ (непрерывная функция с компактным носителем). Если сдвинем, получим то же неравенство
 \[
- \|\tau_a f-\tau_ag\|_{\L_1}<\frac{2\,\e}{3\k m}.
+ \|\tau_a f-\tau_ag\|_{\L_1}<\frac{2\,\e}{3\k^m}.
 \]
-В силу непрерывности на компактном носителе, $g$ равномерно непрерывна. Существует $\delta>0\colon \|a\|<\delta\imp \|g-\tau_ag\|_{\L_1}<\frac{2\,\e}{3\k m}$ (по норме в $C$ это верно, по норме в $\L_1$ тем более).
+В силу непрерывности на компактном носителе, $g$ равномерно непрерывна. Существует $\delta>0\colon \|a\|<\delta\imp \|g-\tau_ag\|_{\L_1}<\frac{2\,\e}{3\k^m}$ (по норме в $C$ это верно, по норме в $\L_1$ тем более).
 
-Тогда для $\|a\|<\e$ имеем $\big|\hat f(x)\big|<\e$. А $\|a\| = \frac\pi{\|x\|}<\delta$. Значит, $\|x\|>\frac\pi\delta$. То есть предел в есконечности равен нулю.
+Тогда для $\|a\|<\delta$ имеем $\big|\hat f(x)\big|<\e$. А $\|a\| = \frac\pi{\|x\|}<\delta$. Значит, $\|x\|>\frac\pi\delta$. То есть предел в бесконечности равен нулю.
 \end{Proof}
 
 Докажем теперь условие Дини, но в одномерном случае. В отличие от преобразования Фурье обобщённой функции, функция может получиться не из $\L_1$. Но можно на исходную функцию наложить ограничение.
 \begin{The}[условие обращения Дини]
-  Пусть $f\in\L_1(\R)$ и при некотором $\delta>0$ и некотором $x$ имеем $\int\limits_{-\delta}^{\delta}\left|\frac{f(x+t)-f(x)}t<\right|\infty$. Тогда утверждается, что 
+  Пусть $f\in\L_1(\R)$ и при некотором $\delta>0$ и некотором $x$ имеем $\int\limits_{-\delta}^{\delta}\left|\frac{f(x+t)-f(x)}t\right|\,dt<\infty$. Тогда утверждается, что 
 \[
   \yo n\infty\int\limits_{-n}^n\hat f(y)e^{-i\,x\,y}\,dy = f(x).
 \]
@@ -94,13 +94,13 @@
   \Gint{\R^m} f(x)\hat{\Til\phi }(x)\,dx = 
   \Gint{\R^m} f(x)\,\phi(x)\,dx.
 \]
-Значит, $\Til {\hat f}(x)-f(x)=0$ почти всюду.
+Значит, $\Til {\hat f(x)}-f(x)=0$ почти всюду.
 \end{Proof}
 \begin{Ut}[Формулы дифференцирования]
-  Пусть $f\in\L_1(\R^m)$, $x^\a f(x)\in\L_1(\R^m)$. Тогда $\dl^\a\hat f(x) = \hat{(-i\,y)^\a f}(y)$.
+  Пусть $f\in\L_1(\R^m)$, $x^\a f(x)\in\L_1(\R^m)$. Тогда $\dl^\a\hat f(x) = \widehat{(-i\,y)^\a f(y)}$.
 
 Если $f\in W_1^k(\R^m)$, то $\forall\ |\a|\le k,\ \forall\ x\in\R^m\pau 
-  \hat{\dl^\a f}(x) = (ix)^\a\hat f(x)$.
+  \widehat{\dl^\a f}(x) = (ix)^\a\hat f(x)$.
 \end{Ut}
 
 Раз мы уже показали, что данное преобразование совпадает с обобщённым, то всё уже доказано. Просто равенства выполнены почти всюду, но для элементов из $\L_1$ это неважно.
@@ -109,7 +109,7 @@
   Формула свёртки. Пусть $f,g\in\L_1(\R^m)$. Тогда
 \[
   f\star g(x) = \Gint{\R^m} f(y)g(x-y)\,dy\in\L_1(\R^m);\quad
-  \hat{f\star g}(x) = \k^{-m} \hat f(x)\cdot \hat g(x).
+  \widehat{f\star g}(x) = \k^{-m} \hat f(x)\cdot \hat g(x).
 \]
 \end{Ut}
 \begin{Proof}
@@ -135,23 +135,27 @@
 
 Докажем, что предел существует и оператор сохраняет норму.
 \begin{The}[Планшереля]
-  Если $f\in\L_2(\R^m)$, то $\exists\ \hat f = \lim\limits{n\to\infty} f_n$ в $\L_2(\R^m)$ и $\|\hat f\|_{\L_2} = \|f\|_{\L_2}$.
+  Если $f\in\L_2(\R^m)$, то $\exists\ \hat f = \lim\limits_{n\to\infty} \hat f_n$ в $\L_2(\R^m)$ и $\|\hat f\|_{\L_2} = \|f\|_{\L_2}$.
 \end{The}
 \begin{Proof}
  Легко проверить, что если возьмём функцию $ \phi\in S(\R^m)$, то 
-\[
+\begin{equation}\label{SwartzFourier}
   \|\phi\|_{\L_2}^2 = \Gint{\R^m}\phi(x)\ol{\phi(x)}\,dx = 
   \Gint{\R^m}\Til{\hat\phi}(x)\ol{\phi(x)}\,dx = 
   \Gint{\R^m}\hat \phi(x)\ol{\hat\phi(x)}\,dx = \|\hat\phi\|_{\L_2}^2.
-\]
+\end{equation}
 Таким образом для функций из $S$ мы доказали.
 
-Пусть $f(x)\in\L_2(\R^m)$ и $f(x)=0$ для всех $x\in\Delta_r$. Тогда $\exists\ \phi_n\in\D(\Delta_r)\colon \|f-\phi_n\|_{\L_2}\te0$. Мы это доказывали для $\L_p$. Значит, $\{\phi_n\}$ "--- последовательность Коши в $\L_2(\R^m)$. Следовательно и $\{\hat\phi_n\}$ "--- последовательность Коши в $\L_2(\R^m)$. Сходятся в $\L_2$, значит, сходятся в $\L_1$, а $\phi_n,f\in\L_1(\Delta_r)$ и $\hat\phi_n\rsh n\hat f$. Значит, $\hat\phi_n\te \hat f$ в $\L_2(\R^m)$. Значит,
+Пусть $f(x)\in\L_2(\R^m)$ и $f(x)=0$ для всех $x\not\in\Delta_r$. Тогда по лемме \ref{odensity} о плотности 
 \[
-  \|f\|_{\L_2} = \yo n\infty\|\phi_n\|_{\L_2} = \yo n\infty \|\hat\phi_n\| = \|\hat f\|_{\L_2}.
+  \exists\ \phi_n\in\D(\Delta_r)\colon \|f-\phi_n\|_{\L_2}\te0.
 \]
+ Мы это доказывали для $\L_p$. Значит, $\{\phi_n\}$ "--- последовательность Коши в $\L_2(\R^m)$. Следовательно из равенства \eqref{SwartzFourier} и $\{\hat\phi_n\}$ "--- последовательность Коши в $\L_2(\R^m)$. Сходятся в $\L_2$ на ограниченном множестве, значит, сходятся в~$\L_1$, а $\phi_n,f\in\L_1(\Delta_r)$; поэтому из леммы \ref{RimLeb} Римана"--~Лебега получаем $\hat\phi_n\rsh[ ] n\hat f$. Значит, $\hat\phi_n\te \hat f$ в~$\L_2(\R^m)$. Значит,
+\begin{equation}\label{L2Ssssss}
+  \|f\|_{\L_2} = \yo n\infty\|\phi_n\|_{\L_2} = \yo n\infty \|\hat\phi_n\| = \|\hat f\|_{\L_2}.
+\end{equation}
 
-Докажем теперь в общем случае. Пусть $f\in\L_2(\R^m)$. Тогда $f_n = f\cdot\chi_{\Delta_n}\te f$ в $\L_2(\R^m)$. Значит, $\{f_n\}$ "--- последовательность Коши в $\L_2$. Отсюда и преобразование Фурье тоже является последовательностью Коши в силу последнего выключного равенства. Отсюда существует предел в $\L_2$, то есть$\exists\ \hat f=\yo n\infty \hat f_n$ в $\L_2(\R^m)$. И осталось написать равенство норм.
+Докажем теперь в общем случае. Пусть $f\in\L_2(\R^m)$. Тогда $f_n = f\cdot\chi_{\Delta_n}\te f$ в $\L_2(\R^m)$. Значит, $\{f_n\}$ "--- последовательность Коши в $\L_2$. Отсюда и преобразование Фурье тоже является последовательностью Коши в~силу последнего равенства \eqref{L2Ssssss}. Отсюда существует предел в $\L_2$, то есть $\exists\ \hat f=\yo n\infty \hat f_n$ в $\L_2(\R^m)$. И осталось написать равенство норм.
 \end{Proof}
 
 Давайте сформулируем теперь свойства преобразования Фурье для функций из $\L_2$.
