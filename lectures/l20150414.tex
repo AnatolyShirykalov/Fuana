@@ -5,20 +5,20 @@
 \[
   \mathcal F(f):=\hat f(x).
 \]
-Я напомню, что оператор преобразования Фурье сохраняет норму
+Я напомню, что оператор преобразования Фурье сохраняет норму по теореме \ref{Plansh} Планшереля
 \[
   \big\|\mathcal F(f)\big\|_{\L_2} = \|f\|_{\L_2}.
 \]
 При этом $\Im(\mathcal F) = \L_2(\R)$. Значит, $\mathcal F$ "--- изометрия $\L_2(\R)$.
 
-Рассмотрим $h_n(x) = H_n(x)e^{-\frac{x^2}2}$ "--- функции Эрмита. Имеем $\mathcal F(h_k) = (-1)^n h_n(x)$, $n=0,1,2,\dots,$, то есть это собственные функции оператора Фурье. Ктоме того $\{h_n\}$ "--- полная ортонормированная система в $\L_2(\R)$. Таким образом $\sigma(\mathcal F) = \{\pm 1,\pm i\}$, $i=\sqrt{-1}$. То есть у оператора Фурье спектр чисто точечный $\sigma(\mathcal F) = \sigma_p(\mathcal F)$.
+Рассмотрим $h_n(x) = H_n(x)e^{-\frac{x^2}2}$ "--- функции Эрмита. Имеем $\mathcal F(h_n) = (-i)^n h_n(x)$, $n=0,1,2,\dots,$, то есть это собственные функции оператора Фурье. Кроме того $\{h_n\}$ "--- полная ортонормированная система в $\L_2(\R)$ по теореме \ref{ErmFull}. Таким образом, $\sigma(\mathcal F) = \{\pm 1,\pm i\}$, $i=\sqrt{-1}$. То есть у оператора Фурье спектр чисто точечный $\sigma(\mathcal F) = \sigma_p(\mathcal F)$.
 
 Вычислим резольвенту оператора Фурье.
 \[
   \L_2(\R) = H_1\oplus H_{-1}\oplus H_i \oplus H_{-i},\pau
-  H_\lambda = \ker(\mathcal F_\lambda),\pau \mathcal F_\lambda = \lambda I - \mathcal F.
+  H_\lambda = \ker(\mathcal F_\lambda),\pau \mathcal F_\lambda = \lambda I - \mathcal F,\ \lambda\in\sigma_p(\mathcal F).
 \]
-Здесь будет даже ортогональная прямая сумма. В каждом слагаемом можно выделить базис из функций Эрмита. И таким образом, тождественный оператор можно представить в виде суммы проекторов
+По утверждению \ref{kerzam} ядро замкнуто и можно разложить в прямую сумму. Здесь будет даже ортогональная прямая сумма. В каждом слагаемом можно выделить базис из функций Эрмита. И таким образом, тождественный оператор можно представить в виде суммы проекторов
 \[
   I = P_1 + P_{-1} + P_i + P_{-i},\pau P_\lambda\colon \L_2(\R)\to H_\lambda\text{ "--- ортогональный проектор}.
 \]
@@ -53,7 +53,7 @@ $A\approx B$, если $T$ изометрия.
 \begin{Proof}
   Пусть $A_\lambda = \lambda I - A$, $B_\lambda = \lambda I - B$. Тогда $B_\lambda T = T A_\lambda$. Соответственно $A_\lambda$ обратим, если и только если $B_\lambda$ обратим.
 
-$\ker B_\lambda = T(\ker A_\lambda)$ и $\Im B_\lambda = I(\Im A_\lambda)$. Таким образом, $R_\lambda(B) = T R_\lambda(A) T^{-1}$, $\lambda\in\rho(A)$.
+$\ker B_\lambda = T(\ker A_\lambda)$ и $\Im B_\lambda = T(\Im A_\lambda)$. Таким образом, $R_\lambda(B) = T R_\lambda(A) T^{-1}$, $\lambda\in\rho(A)$.
 \end{Proof}
 
 \begin{Ut}
@@ -68,7 +68,7 @@ $\ker B_\lambda = T(\ker A_\lambda)$ и $\Im B_\lambda = I(\Im A_\lambda)$. Та
   \forall\ f\in\L_2(\R)\pau A f(x) = \Gint{\R} K(x-y) f(y)\,dy;\quad A\colon \L_2(\R)\to\L_2(\R).
 \]
 
-Тогда $\widehat{A f}(x) = 2\pi \hat K(x)\hat f(x)$ почти всюду на $\R$. Положим $\phi(x) = 2\pi\hat K(x)$.
+Тогда $\widehat{A f}(x) = \sqrt{2\pi} \hat K(x)\hat f(x)$ почти всюду на $\R$. Положим $\phi(x) = \sqrt{2\pi}\hat K(x)$.
 
 Рассмотрим умножение на функцию $\phi$, то есть
 \[
@@ -83,7 +83,7 @@ $\ker B_\lambda = T(\ker A_\lambda)$ и $\Im B_\lambda = I(\Im A_\lambda)$. Та
 Докажем пару утверждений, хотя они уже у нас доказаны.
 \begin{azItems}
 \item $\|A\| = \|B\| = \max\limits_{x\in\R}\big|\phi(x)\big|$.
-\item $\sigma(A) = \sigma(B) = \phi(\ol\R) = \big\{\lambda = \phi(x)\bigm|x\in\ol\R\big\}$, $\ol\R = \R\sqcup\{\pm\infty\}$.
+\item $\sigma(A) = \sigma(B) = \phi(\R) = \big\{\lambda = \phi(x)\bigm|x\in\ol\R\big\}$, $\ol\R = \R\sqcup\{\pm\infty\}$.
 \item $\sigma_p(A) = \sigma_p(B) = \Big\{\lambda\in\phi(\ol\R)\Bigm|\mu\big(\phi^{-1}(A)\big)>0\Big\}$.
 \item $\sigma_c(A) = \sigma_c(B) = 
   \Big\{ \lambda\in\phi(\ol\R)\Bigm| \mu\big(\phi^{-1}(\lambda)\big)=0\Big\}$.
@@ -91,7 +91,7 @@ $\ker B_\lambda = T(\ker A_\lambda)$ и $\Im B_\lambda = I(\Im A_\lambda)$. Та
 \end{azItems}
 Доказывать достаточно просто, нужно работать с нашим оператором. Если $\mu\big(\phi^{-1}(A)\big)>0$, то в качестве собственной функции можно взять $e(x) = \chi_{\phi^{-1}(\lambda)}(x)$.
 
-Если $\mu\big(\phi^{-1}(x)\big)=0$. То берёз окрестностьи $O_\delta(\lambda) = \big\{z\bigm| |z-\lambda|<\delta\big\}$ и функции для $g\in\L_2(\R)$, а именно
+Если $\mu\big(\phi^{-1}(x)\big)=0$. То берём окрестность $O_\delta(\lambda) = \big\{z\bigm| |z-\lambda|<\delta\big\}$ и функции для $g\in\L_2(\R)$, а именно
 \[
   g_\delta(x) = 
 \begin{cases}
@@ -121,7 +121,7 @@ $\ker B_\lambda = T(\ker A_\lambda)$ и $\Im B_\lambda = I(\Im A_\lambda)$. Та
 \[
   \lambda^n I - A^n = (\lambda I- A)p_{n-1}(A) = p_{n-1}(A) (\lambda I - A).
 \]
-Если оператор $\lambda^n I - A^n$ обратим, то и $\lambda I - A$ тоже обратим. Это не возможно, так как $\lambda\in\sigma(A)$. Значит, и $\lambda^n\in \sigma(A^n)$. Отсуда
+Если оператор $\lambda^n I - A^n$ обратим, то и $\lambda I - A$ тоже обратим. Это не возможно, так как $\lambda\in\sigma(A)$. Значит, и $\lambda^n\in \sigma(A^n)$. Отсюда
 \[
   |\lambda|\le \|A^n\|
 \]

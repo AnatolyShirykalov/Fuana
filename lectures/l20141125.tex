@@ -69,18 +69,18 @@
 \end{enumerate}
 \end{Proof}
 
-\begin{The}
+\begin{The}\label{EFban2Lban}
   Если $F$ "--- банахово пространство, то $\L(E,F)$ "--- банахово пространство.
 \end{The}
 
 \begin{Proof}
   Пусть $\{A_n\}\in \L(E,F)$ последовательность Коши, то есть
 \[
-  \forall\ \e>0\pau \exists\ N\in\N\colon \forall\ n,m\ge <\pau \|A_n-A_m\|<\e.
+  \forall\ \e>0\pau \exists\ N\in\N\colon \forall\ n,m\ge N\pau \|A_n-A_m\|<\e.
 \]
 Тогда $\big\|A_n(x)-A_m(x)\big\|<\e \|x\|\pau \forall\ x\in E,\ \forall\ n,m\ge N$.Значит, последовательность $\big\{A_n(x)\big\}\subset F$ является последовательностью Коши в $F$. Значит,
 \[
-  \exists A(x) = \yo n\infty A_n(x)
+  \exists\ A(x) = \yo n\infty A_n(x)
 \]
 и это линейный оператор $A\colon E\to F$. У нас есть его сходимость в каждой точке. Покажем сходимость по норме. Устремим $m\to\infty$ в неравенстве
 \[

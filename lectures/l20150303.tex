@@ -140,12 +140,12 @@ $S'(\R^m)$ полно, то есть если $f_n\in S'(\R^m)$ и $f_n\te f$ в
 \end{Def}
 
 Пример. $e^{-\frac{\|x\|^2}2} = \prod\limits_{k=1}^me^{-\frac{x_k^2}2}$. Давайте найдём преобразование Фурье. Достаточно найти для одномерной функции. Дальше перемножим.
-\[
-  \hat\e^{-\frac{x^2}2} = \varkappa\Gint\R e^{-\frac{y^2}2-ixy}\,dy = 
+\begin{equation}\label{Ermit1}
+  \widehat{\e^{-\frac{x^2}2}} = \varkappa\Gint\R e^{-\frac{y^2}2-ixy}\,dy = 
   e^{-\frac {x^2}2}\varkappa\Gint\R e^{-\frac{(y+i\,x)^2}2}\,dy.
-\]
+\end{equation}
 По теореме Коши из комплексного анализа.
-\[\hat\e^{-\frac{x^2}2} = 
+\[\widehat{\e^{-\frac{x^2}2}} = 
   e^{-\frac{x^2}2}\varkappa\Gint\R e^{-\frac{y^2}2}\,dy = e^{-\frac{x^2}2}.
 \]
 И для произведения это тоже будет верно, то есть 
