@@ -116,26 +116,28 @@
 \end{Def}
 
 \begin{Lem}
-Пусть задана двойная последовательность комплексных чисел $\{a_{mn}\}\subset\F$, такая, что 
+Пусть задана двойная последовательность комплексных чисел $\{a_{m,n}\}\subset\F$, такая, что 
 \begin{roItems}
-  \item $\forall\ m\in\N\pau \exists\ \lim\limits_{n}a_{mn} = b_m$,
+  \item $\forall\ m\in\N\pau \exists\ \lim\limits_{n}a_{m,n} = b_m$,
   \item $\exists\ \e>0\colon\forall\ m\in\N\pau|b_m|>\e$,
-  \item $\forall\ n$ ряд $\rY m1a_{mn}$ абсолютно сходится.
+  \item $\forall\ n$ ряд $\rY m1a_{m,n}$ абсолютно сходится.
 \end{roItems}
 Тогда $\exists\ m_l\to\infty$ и $\exists\ n_k\to\infty$, для которых
 \[
-   \lim\limits_k\bigg|\rY l1a_{m_ln_k}\bigg|=\infty.
+   \lim\limits_k\bigg|\rY l1a_{m_l,n_k}\bigg|=\infty.
 \]
 \end{Lem}
 \begin{Proof}
-Мы не будем доказывать для комплексных. Это доказательство сводится к случаю действительных чисел. Пусть $a_{mn}\in\R$. Существует $n_1<n_2<\dots$, для которой $\forall\ n\ge n_k\pau |a_{kn}|>\e$ по первым двум свойствам. Отсюда
+Мы не будем доказывать для комплексных. Это доказательство сводится к случаю действительных чисел. По условию нам уже задано некоторое $\e>0$. Пусть также $a_{m,n}\in\R$.
+Найдём из первых двух свойств $n_1\in\N\colon \forall\ n\ge n_1\pau |a_{1,n}|>\e$. $\forall\ k\ge 2$ найдём $n_k>n_{k-1}\colon \forall\ n\ge n_k\pau |a_{k,n}|>\e$. Заметим, что $\forall\ m\le k\pau n_m\ge n_k\imp |a_{m,n_k}|>\e$.
+Отсюда
 \[
-  \rY m1|a_{mn_k}|\ge \RY m1k|a_{mn_k}|>k\,\e.
+  \rY m1|a_{m,n_k}|\ge \RY m1k|a_{m,n_k}|>k\,\e.
 \]
-Действительно, поскольку $n_k$ возрастают, вместо $n_k$ могу брать $n_m$, для которого есть уже эта оценка.
+Теперь берём предел
 \[
-  \lim\limits_k\rY m1|a_{mn_k}|=\infty\imp \lim\limits_k\rY m1 a_{mn_k}^+=\infty \text{ или }
-\lim\limits_k\rY m1 a_{mn_k}^-=\infty.
+  \lim\limits_k\rY m1|a_{m,n_k}|=\infty\imp \lim\limits_k\rY m1 a_{m,n_k}^+=\infty \text{ или }
+\lim\limits_k\rY m1 a_{m,n_k}^-=\infty.
 \]
 где $a^\pm = \max\{\pm a,0\}$.
 \end{Proof}
